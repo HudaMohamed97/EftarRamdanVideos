@@ -52,10 +52,10 @@ class LoginFragment : Fragment(), LoginInterface {
 
     override fun setClickListeners() {
 
-      /*  forgetPassword.setOnClickListener{
-            findNavController().navigate(R.id.action_LoginFragment_to_ForgetPassword)
+        /*  forgetPassword.setOnClickListener{
+              findNavController().navigate(R.id.action_LoginFragment_to_ForgetPassword)
 
-        }*/
+          }*/
         showPassword.setOnClickListener {
             var cursor = passwordEt.selectionStart
             if (clicked) {
@@ -99,7 +99,7 @@ class LoginFragment : Fragment(), LoginInterface {
                     passwordEt.text.toString()
                 )
             ) {
-               // callLoginRequest()
+                callLoginRequest()
             }
         }
 
@@ -117,9 +117,9 @@ class LoginFragment : Fragment(), LoginInterface {
                 if (it.access_token != "") {
                     saveData(it)
                     saveUserData()
-                    val bundle = Bundle()
-                    bundle.putParcelable("Account", it.account)
-                  //  findNavController().navigate(R.id.action_LoginFragment_to_Home, bundle)
+                    /*val bundle = Bundle()
+                    bundle.putParcelable("Account", it.account)*/
+                    findNavController().navigate(R.id.action_login_to_Home)
                 } else {
                     var error = it.token_type.replace("[", "")
                     error = error.replace("]", "")
@@ -176,7 +176,6 @@ class LoginFragment : Fragment(), LoginInterface {
     private fun saveData(responseModelData: ResponseModelData) {
         val token = "Bearer " + responseModelData.access_token
         loginPrefsEditor.putString("accessToken", token)
-        loginPrefsEditor.putInt("userType", responseModelData.account.type)
         loginPrefsEditor.commit()
     }
 }

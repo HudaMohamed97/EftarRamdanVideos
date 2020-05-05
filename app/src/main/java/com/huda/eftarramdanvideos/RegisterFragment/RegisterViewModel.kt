@@ -22,7 +22,7 @@ class RegisterViewModel : ViewModel() {
     }
 
     fun register(registerRequestModel: RegisterRequestModel) {
-       // mutableLiveData = repositoryHelper.register(registerRequestModel)
+       mutableLiveData = repositoryHelper.register(registerRequestModel)
 
     }
 

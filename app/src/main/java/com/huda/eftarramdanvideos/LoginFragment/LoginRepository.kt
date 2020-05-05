@@ -1,6 +1,7 @@
 package com.imagin.myapplication.LoginFragment
 
 import androidx.lifecycle.MutableLiveData
+import com.huda.eftarramdanvideos.Models.Account
 import com.imagin.myapplication.Models.LoginRequestModel
 import com.huda.eftarramdanvideos.Models.ResponseModelData
 import com.huda.eftarramdanvideos.NetworkLayer.Webservice
@@ -15,7 +16,6 @@ class LoginRepository {
         const val ERROR_CODE = 401   //this for Wrong Password
     }
 
-/*
     fun login(email: String, password: String): MutableLiveData<ResponseModelData> {
         val userData = MutableLiveData<ResponseModelData>()
         val body = LoginRequestModel(email.trim(), password)
@@ -73,7 +73,6 @@ class LoginRepository {
         return userData
 
     }
-*/
 
 
 }

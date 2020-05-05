@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_login_to_Register"
             app:destination="@id/RegisterFragment" />
+        <action
+            android:id="@+id/action_login_to_Home"
+            app:destination="@id/HomeFragment" />
 
 
     </fragment>
@@ -21,6 +24,15 @@
         android:id="@+id/RegisterFragment"
         android:name="com.huda.eftarramdanvideos.RegisterFragment.RegisterFragment"
         tools:layout="@layout/register_fragment">
+
+        <action
+            android:id="@+id/action_Register_to_videos"
+            app:destination="@id/VideosActivity" />
+    </fragment>
+    <fragment
+        android:id="@+id/HomeFragment"
+        android:name="com.huda.eftarramdanvideos.HomeFragment.HomeFragment"
+        tools:layout="@layout/home_fragment">
 
         <action
             android:id="@+id/action_Register_to_videos"

@@ -8,29 +8,27 @@ import com.google.gson.annotations.SerializedName
 data class Account(
 
     @SerializedName("id") val id: Int = 0,
-    @SerializedName("name") val name: String = "name",
-    @SerializedName("email") val email: String = "email",
-    @SerializedName("active") val active: Boolean = false,
-    @SerializedName("type") val type: Int = 1,
-    @SerializedName("bio") val bio: String = "bio",
-    @SerializedName("photo") val photo: String = ""
+    @SerializedName("name") val name: String? = "name",
+    @SerializedName("email") val email: String? = "email",
+    @SerializedName("score") val score: Int = 0
 ) : Parcelable {
-    override fun writeToParcel(p0: Parcel?, p1: Int) {
+    constructor(parcel: Parcel) : this(
+        parcel.readInt(),
+        parcel.readString(),
+        parcel.readString(),
+        parcel.readInt()
+    )
+
+    override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(id)
+        parcel.writeString(name)
+        parcel.writeString(email)
+        parcel.writeInt(score)
     }
 
     override fun describeContents(): Int {
-        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+        return 0
     }
-
-    constructor(parcel: Parcel) : this(
-        parcel.readInt(),
-        parcel.readString().toString(),
-        parcel.readString().toString(),
-        parcel.readByte() != 0.toByte(),
-        parcel.readInt(),
-        parcel.readString().toString(),
-        parcel.readString().toString()
-    )
 
     companion object CREATOR : Parcelable.Creator<Account> {
         override fun createFromParcel(parcel: Parcel): Account {

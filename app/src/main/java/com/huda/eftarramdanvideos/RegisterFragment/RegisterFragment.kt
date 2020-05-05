@@ -60,8 +60,7 @@ class RegisterFragment : Fragment() {
 
     private fun setListeners() {
         register_back.setOnClickListener {
-            findNavController().navigate(R.id.action_Register_to_videos)
-            //findNavController().navigateUp()
+            findNavController().navigateUp()
         }
         register_login.setOnClickListener {
             checkErrorEnabled()
@@ -69,7 +68,7 @@ class RegisterFragment : Fragment() {
             if (registerViewModel.validateDataInfo(
                     emailText
                     , passwordText
-                ) && (nameText.isNotEmpty()) && (rePasswordText.isNotEmpty() && matched)
+                ) && (nameText.isNotEmpty()) && (rePasswordText.isNotEmpty() && matched && passwordEt.length() >= 6)
             ) {
                 callRegisterRequest()
             }

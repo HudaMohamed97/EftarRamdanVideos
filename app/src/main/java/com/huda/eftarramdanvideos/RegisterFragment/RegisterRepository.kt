@@ -10,7 +10,6 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class RegisterRepository {
-/*
     fun register(registerRequestModel: RegisterRequestModel): MutableLiveData<ResponseModelData> {
         val userData = MutableLiveData<ResponseModelData>()
         Webservice.getInstance().api.register(registerRequestModel)
@@ -46,7 +45,6 @@ class RegisterRepository {
         return userData
 
     }
-*/
 
 
 }

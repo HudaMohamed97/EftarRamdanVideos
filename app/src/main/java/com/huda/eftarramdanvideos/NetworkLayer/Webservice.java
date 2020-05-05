@@ -13,7 +13,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Webservice {
-    private static final String MAIN_URL = "http://imaging-atelier.cat-sw.com/api/";
+    private static final String MAIN_URL = "http://ramadan-iftar.cat-sw.com/api/";
     private static Webservice instance;
     private ApiServices api;
 
@@ -30,7 +30,7 @@ public class Webservice {
         httpClient.readTimeout(160, TimeUnit.SECONDS);
         httpClient.addInterceptor(logging);
         Retrofit retrofit = new Retrofit.Builder()
-                .client(okHttpClient)
+                .client(httpClient.build())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .baseUrl(MAIN_URL)
                 .build();

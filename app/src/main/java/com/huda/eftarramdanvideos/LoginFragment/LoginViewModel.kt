@@ -10,9 +10,6 @@ class LoginViewModel : ViewModel() {
     private var repositoryHelper: LoginRepository = LoginRepository()
     private lateinit var mutableLiveData: MutableLiveData<ResponseModelData>
 
-    val isLoadingLiveData = MutableLiveData<Boolean>().apply { value = false }
-
-
     fun validateLoginInfo(
         emailEt: String,
         passwordEt: String
@@ -24,7 +21,7 @@ class LoginViewModel : ViewModel() {
 
 
     fun login(emailEt: String, passwordEt: String) {
-       // mutableLiveData = repositoryHelper.login(emailEt, passwordEt)
+        mutableLiveData = repositoryHelper.login(emailEt, passwordEt)
 
     }
 
