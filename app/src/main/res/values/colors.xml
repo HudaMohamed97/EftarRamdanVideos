@@ -24,7 +24,7 @@
     <color name="semi_white">#90ffffff</color>
     <color name="not_white">#dcffffff</color>
     <color name="semi_black">#b90b0606</color>
-    <color name="not_black">#bf8f8e8e</color>
+    <color name="not_black">#272727</color>
     <color name="yellow">#fdb812</color>
     <color name="myAccount_background">#8DFC88</color>
     <color name="concor_background">#FFC06A</color>
@@ -34,7 +34,8 @@
     <color name="drug_background">#d063ff</color>
     <color name="pull_background">#61daff</color>
     <color name="subMenu_background">#c0cf6666</color>
-    <color name="orange">#ffa500</color>
+    <color name="orange">#FB5F00</color>
+    <color name="orange2">#8b4913</color>
 
 
     <color name="background_color">#2A2A2A</color>

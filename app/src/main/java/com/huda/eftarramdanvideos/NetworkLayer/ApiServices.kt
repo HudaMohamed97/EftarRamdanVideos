@@ -1,8 +1,6 @@
 package com.huda.eftarramdanvideos.NetworkLayer
 
-import com.huda.eftarramdanvideos.Models.ResponseModelData
-import com.huda.eftarramdanvideos.Models.SubmitModel
-import com.huda.eftarramdanvideos.Models.VideoResponse
+import com.huda.eftarramdanvideos.Models.*
 import com.imagin.myapplication.Models.LoginRequestModel
 import com.imagin.myapplication.Models.RegisterRequestModel
 import retrofit2.Call
@@ -18,6 +16,12 @@ interface ApiServices {
 
     @GET("videos")
     fun getVideos(@Header("Authorization") authHeader: String): Call<VideoResponse>
+
+    @GET("questions")
+    fun getVideoQuestions(@Header("Authorization") authHeader: String): Call<QuestionData>
+
+    @GET("account/me")
+    fun getScore(@Header("Authorization") authHeader: String): Call<MyScore>
 
     @POST("videos/{video}/start")
     fun startVideos(@Path("video") video: Int, @Header("Authorization") authHeader: String): Call<SubmitModel>

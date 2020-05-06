@@ -9,14 +9,28 @@
         android:layout_width="match_parent"
         android:layout_height="300dp"/>
 
-    <Button
+    <ProgressBar
+        android:id="@+id/questionProgressBar"
+        style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button"
-        android:text="button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginTop="@dimen/space_10"
         android:layout_below="@+id/youtube_view"
-        >
+        android:indeterminate="true"
+        android:indeterminateTint="@color/white"
+        android:indeterminateTintMode="src_atop"
+        android:visibility="visible"
+         />
 
-    </Button>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/questionsRecycler"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:layout_marginTop="@dimen/space_10"
+        android:layout_below="@+id/youtube_view"
+        tools:listitem="@layout/question_row" />
 
 </RelativeLayout>

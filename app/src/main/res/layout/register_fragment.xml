@@ -4,7 +4,7 @@
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/logo"
+    android:background="@mipmap/register_background"
     android:clickable="true"
     android:focusable="true">
 
@@ -29,7 +29,6 @@
         android:id="@+id/logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
         app:layout_constraintBottom_toTopOf="@+id/email_login_form"
         app:layout_constraintEnd_toEndOf="parent"
         android:visibility="invisible"
@@ -55,7 +54,7 @@
             android:id="@+id/email"
             android:layout_width="match_parent"
             android:layout_height="60dp"
-            android:background="@drawable/emai"
+            android:background="@drawable/editbox"
             android:gravity="center_vertical"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="parent">
@@ -64,15 +63,15 @@
                 android:id="@+id/input_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
+                android:layout_gravity="start"
                 android:backgroundTint="@color/transparent"
                 android:gravity="center_vertical"
                 android:hint="Email"
                 android:inputType="textEmailAddress"
                 android:textColor="@color/white"
                 android:textColorHint="@color/not_black"
-                android:layout_marginRight="40dp"
-                android:layout_marginLeft="55dp" />
+                android:layout_marginStart="5dp"
+                android:layout_marginLeft="5dp" />
 
         </LinearLayout>
 
@@ -81,7 +80,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/login2"
+            android:background="@drawable/editbox"
             android:gravity="center_vertical"
             android:orientation="vertical"
             app:layout_constraintTop_toTopOf="@id/email">
@@ -90,17 +89,16 @@
                 android:id="@+id/input_Name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="55dp"
-                android:layout_marginEnd="40dp"
+                android:layout_gravity="start"
+                android:layout_marginStart="5dp"
                 android:backgroundTint="@color/transparent"
                 android:gravity="center_vertical"
                 android:hint="Name"
                 android:inputType="text"
                 android:textColor="@color/white"
                 android:textColorHint="@color/not_black"
-                android:layout_marginLeft="55dp"
-                android:layout_marginRight="40dp" />
+                android:layout_marginLeft="5dp"
+                 />
 
         </LinearLayout>
 
@@ -109,7 +107,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/space_60"
             android:layout_marginTop="15dp"
-            android:background="@drawable/password2"
+            android:background="@drawable/editbox"
             app:layout_constraintTop_toTopOf="@id/Name">
 
             <EditText
@@ -117,18 +115,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="50dp"
-                android:layout_marginLeft="50dp"
-                android:layout_marginEnd="40dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="5dp"
                 android:backgroundTint="@color/transparent"
                 android:gravity="center_vertical"
                 android:hint="Psssword"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@color/white"
-                android:textColorHint="@color/not_black" />
+                android:textColor="@color/black"
+                android:textColorHint="@color/not_black"
+                android:layout_marginLeft="5dp" />
 
         </LinearLayout>
 
@@ -137,7 +133,7 @@
             android:layout_width="match_parent"
             android:layout_height="60dp"
             android:layout_marginTop="15dp"
-            android:background="@drawable/password2"
+            android:background="@drawable/editbox"
             app:layout_constraintTop_toTopOf="@id/password">
 
             <EditText
@@ -145,19 +141,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
-                android:layout_marginStart="50dp"
-                android:layout_marginLeft="40dp"
-                android:layout_marginEnd="55dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginStart="5dp"
                 android:backgroundTint="@color/transparent"
                 android:gravity="center_vertical"
                 android:hint="Repsssword"
                 android:inputType="textPassword"
                 android:maxLines="1"
                 android:singleLine="true"
-                android:textColor="@color/white"
+                android:textColor="@color/black"
                 android:textColorHighlight="@color/colorAccent"
-                android:textColorHint="@color/not_black" />
+                android:textColorHint="@color/not_black"
+                android:layout_marginLeft="5dp" />
 
         </LinearLayout>
     </LinearLayout>
@@ -170,10 +164,9 @@
         android:layout_marginStart="30dp"
         android:layout_marginTop="5dp"
         android:layout_marginEnd="30dp"
-        android:backgroundTint="@color/red"
+        android:backgroundTint="@color/orange"
         android:text="Register"
         android:textColor="@color/white"
-        app:cornerRadius="@dimen/space_20"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
@@ -190,7 +183,6 @@
         android:backgroundTint="@color/not_black"
         android:text="Back To Login"
         android:textColor="@color/white"
-        app:cornerRadius="@dimen/space_20"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"

@@ -17,7 +17,6 @@
             android:id="@+id/action_login_to_Home"
             app:destination="@id/HomeFragment" />
 
-
     </fragment>
 
     <fragment
@@ -37,6 +36,16 @@
         <action
             android:id="@+id/action_Register_to_videos"
             app:destination="@id/VideosActivity" />
+        <action
+            android:id="@+id/action_home_howtoFragment"
+            app:destination="@id/HowToFragment" />
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/HowToFragment"
+        android:name="com.huda.eftarramdanvideos.ParticapationFragment.HowToParticapateFragment"
+        tools:layout="@layout/pdf_fragment">
 
 
     </fragment>

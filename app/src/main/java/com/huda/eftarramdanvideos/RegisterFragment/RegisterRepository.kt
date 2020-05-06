@@ -2,6 +2,8 @@ package com.imagin.myapplication.LoginFragment
 
 import androidx.lifecycle.MutableLiveData
 import com.huda.eftarramdanvideos.Models.Account
+import com.huda.eftarramdanvideos.Models.AccountData
+import com.huda.eftarramdanvideos.Models.MyScore
 import com.huda.eftarramdanvideos.Models.ResponseModelData
 import com.huda.eftarramdanvideos.NetworkLayer.Webservice
 import com.imagin.myapplication.Models.RegisterRequestModel
@@ -38,6 +40,30 @@ class RegisterRepository {
                 }
 
                 override fun onFailure(call: Call<ResponseModelData>, t: Throwable) {
+                    userData.value = null
+                }
+            })
+
+        return userData
+
+    }
+
+    fun getScore(access: String): MutableLiveData<MyScore> {
+        val userData = MutableLiveData<MyScore>()
+        Webservice.getInstance().api.getScore(access)
+            .enqueue(object : Callback<MyScore> {
+                override fun onResponse(
+                    call: Call<MyScore>,
+                    response: Response<MyScore>
+                ) {
+                    if (response.isSuccessful) {
+                        userData.value = response.body()
+                    } else {
+                        userData.value = response.body()
+                    }
+                }
+
+                override fun onFailure(call: Call<MyScore>, t: Throwable) {
                     userData.value = null
                 }
             })
