@@ -12,47 +12,7 @@ class Repository {
 
 
 
-    fun submitStartVideo(
-        videoId: Int,
-        accessToken: String
-    ) {
-        Webservice.getInstance().api.startVideos(videoId, accessToken)
-            .enqueue(object : Callback<SubmitModel> {
-                override fun onResponse(
-                    call: Call<SubmitModel>,
-                    response: Response<SubmitModel>
-                ) {
-                    if (response.isSuccessful) {
-                    } else {
-                    }
-                }
 
-                override fun onFailure(call: Call<SubmitModel>, t: Throwable) {
-                }
-            })
-        return
-    }
-
-
-    fun submitEndVideo(
-        videoId: Int,
-        accessToken: String
-    ) {
-        Webservice.getInstance().api.endVideos(videoId, accessToken)
-            .enqueue(object : Callback<SubmitModel> {
-                override fun onResponse(
-                    call: Call<SubmitModel>,
-                    response: Response<SubmitModel>
-                ) {
-                    if (response.isSuccessful) {
-                    } else {
-                    }
-                }
-
-                override fun onFailure(call: Call<SubmitModel>, t: Throwable) {
-                }
-            })
-    }
 
 
 }

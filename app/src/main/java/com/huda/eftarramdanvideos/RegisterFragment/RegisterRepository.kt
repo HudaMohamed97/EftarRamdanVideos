@@ -28,7 +28,7 @@ class RegisterRepository {
                                 ResponseModelData(
                                     "",
                                     "this email is already token please enter valid Email",
-                                    "",
+                                    0,
                                     Account()
                                 )
                             userData.value = dummyResponse

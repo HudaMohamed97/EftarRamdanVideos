@@ -39,7 +39,7 @@ class LoginRepository {
                                 ResponseModelData(
                                     "",
                                     jObjError!!["title"].toString(),
-                                    "",
+                                    0,
                                     Account()
                                 )
                             userData.value = dummyResponse
@@ -49,14 +49,14 @@ class LoginRepository {
                                 ResponseModelData(
                                     "",
                                     "Password must be at leaast 6 length",
-                                    "",
+                                    0,
                                     Account()
                                 )
                             userData.value = dummyResponse
                         }
                         else -> {
                             val dummyResponse =
-                                ResponseModelData("", response.message(), "", Account())
+                                ResponseModelData("", response.message(), 0, Account())
                             userData.value = dummyResponse
                         }
                     }

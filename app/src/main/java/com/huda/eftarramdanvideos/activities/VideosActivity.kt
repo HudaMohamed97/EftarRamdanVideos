@@ -3,15 +3,12 @@ package com.huda.eftarramdanvideos.activities
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
-import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.google.android.gms.common.util.HttpUtils
 import com.google.android.youtube.player.YouTubeBaseActivity
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
@@ -19,6 +16,7 @@ import com.google.android.youtube.player.YouTubePlayerView
 import com.huda.eftarramdanvideos.Adapters.QuestionsAdapter
 import com.huda.eftarramdanvideos.Models.QuestionData
 import com.huda.eftarramdanvideos.Models.QuestionModel
+import com.huda.eftarramdanvideos.Models.SubmitModel
 import com.huda.eftarramdanvideos.Models.VideoResponse
 import com.huda.eftarramdanvideos.NetworkLayer.Webservice
 import com.huda.eftarramdanvideos.R
@@ -26,6 +24,8 @@ import kotlinx.android.synthetic.main.activity_video.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.regex.Pattern
+
 
 class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListener {
     private val RECOVERY_REQUEST = 1
@@ -35,6 +35,7 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
     private lateinit var questionsAdapter: QuestionsAdapter
     private lateinit var loginPreferences: SharedPreferences
     private lateinit var url: String
+    private var videoId: Int = -1
 
 
     private val myPlaybackEventListener = object : YouTubePlayer.PlaybackEventListener {
@@ -62,6 +63,10 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
 
         override fun onVideoStarted() {
             Log.i("hhhh", "started")
+            val accessToken = loginPreferences.getString("accessToken", "")
+            if (accessToken != null && videoId != -1) {
+                submitStartVideo(videoId, accessToken)
+            }
             Toast.makeText(this@VideosActivity, "started", Toast.LENGTH_LONG).show()
         }
 
@@ -70,6 +75,10 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
 
         override fun onVideoEnded() {
             Log.i("hhhh", "ended")
+            val accessToken = loginPreferences.getString("accessToken", "")
+            if (accessToken != null && videoId != -1) {
+                submitEndVideo(videoId, accessToken)
+            }
             Toast.makeText(this@VideosActivity, "ended", Toast.LENGTH_LONG).show()
 
         }
@@ -123,10 +132,10 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
 
         if (!p2) {
             if (url != null) {
-                player?.loadVideo("fhWaJi1Hsfo")
+                val videoId = getYouTubeId(url)
+                player?.loadVideo(videoId)
 
             }
-            // player?.cueVideo("fhWaJi1Hsfo") // Plays https://www.youtube.com/watch?v=fhWaJi1Hsfo
         }
     }
 
@@ -150,12 +159,28 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
         questionsRecycler.adapter = questionsAdapter
         questionsAdapter.setOnItemListener(object : QuestionsAdapter.OnItemClickListener {
             override fun onItemClicked(position: Int) {
-//                bundle.putInt("question_id", list[position].id)
+                val i = Intent(this@VideosActivity, QuestionActivity::class.java)
+                val bundle = Bundle()
+                bundle.putInt("question_id", list[position].id)
+                i.putExtras(bundle)
+                startActivity(i)
 
             }
         })
 
     }
+
+    private fun getYouTubeId(youTubeUrl: String): String {
+        val pattern = "(?<=youtu.be/|watch\\?v=|/videos/|embed\\/)[^#\\&\\?]*"
+        val compiledPattern = Pattern.compile(pattern)
+        val matcher = compiledPattern.matcher(youTubeUrl)
+        return if (matcher.find()) {
+            matcher.group()
+        } else {
+            "error"
+        }
+    }
+
 
     fun getVideos(accessToken: String) {
         Webservice.getInstance().api.getVideos(accessToken)
@@ -167,7 +192,8 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
                         if (response.body()?.data != null) {
                             val videos_list = response.body()?.data
                             url = videos_list?.get(0)?.url.toString()
-                            intializevideo()
+                            videoId = videos_list?.get(0)?.id!!
+                            initializeVideo()
 
 
                         }
@@ -184,9 +210,58 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
             })
     }
 
-    private fun intializevideo() {
+    private fun initializeVideo() {
         youtube_view.initialize("AIzaSyD3YZnVeXC-oq28vugcH2hukUaYoTYSB4E", this)
 
+    }
+
+    fun submitStartVideo(
+        videoId: Int,
+        accessToken: String
+    ) {
+        Webservice.getInstance().api.startVideos(videoId, accessToken)
+            .enqueue(object : Callback<SubmitModel> {
+                override fun onResponse(
+                    call: Call<SubmitModel>,
+                    response: Response<SubmitModel>
+                ) {
+                    if (response.isSuccessful) {
+                        Log.i("hhhhh", "startVideoSuccess")
+
+                    } else {
+                        Log.i("hhhhh", "startVideoFailed")
+
+                    }
+                }
+
+                override fun onFailure(call: Call<SubmitModel>, t: Throwable) {
+                }
+            })
+        return
+    }
+
+
+    fun submitEndVideo(
+        videoId: Int,
+        accessToken: String
+    ) {
+        Webservice.getInstance().api.endVideos(videoId, accessToken)
+            .enqueue(object : Callback<SubmitModel> {
+                override fun onResponse(
+                    call: Call<SubmitModel>,
+                    response: Response<SubmitModel>
+                ) {
+                    if (response.isSuccessful) {
+                        Log.i("hhhhh", "endVideoSuccess")
+                    } else {
+                        Log.i("hhhhh", "endVideoFailed")
+
+                    }
+                }
+
+                override fun onFailure(call: Call<SubmitModel>, t: Throwable) {
+                }
+            })
     }
 
 
@@ -225,52 +300,5 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
                 }
             })
     }
-
-}
-
-
-private class MyPlayerStateChangeListener : YouTubePlayer.PlayerStateChangeListener {
-    override fun onAdStarted() {
-    }
-
-    override fun onLoading() {
-    }
-
-    override fun onVideoStarted() {
-        Log.i("hhhh", "started")
-    }
-
-    override fun onLoaded(p0: String?) {
-    }
-
-    override fun onVideoEnded() {
-        Log.i("hhhh", "ended")
-    }
-
-    override fun onError(p0: YouTubePlayer.ErrorReason?) {
-        Log.i("hhhh", "error")
-    }
-
-
-}
-
-private class MyPlaybackEventListener : YouTubePlayer.PlaybackEventListener {
-    override fun onSeekTo(p0: Int) {
-    }
-
-    override fun onBuffering(p0: Boolean) {
-    }
-
-    override fun onPlaying() {
-    }
-
-    override fun onStopped() {
-        Log.i("hhhh", "stopped")
-
-    }
-
-    override fun onPaused() {
-    }
-
 
 }

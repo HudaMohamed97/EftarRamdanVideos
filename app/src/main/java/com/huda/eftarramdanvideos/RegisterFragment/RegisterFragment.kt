@@ -26,10 +26,15 @@ class RegisterFragment : Fragment() {
     private lateinit var passwordEt: EditText
     private lateinit var rePasswordEt: EditText
     private lateinit var name: EditText
+    private lateinit var company: EditText
+    private lateinit var inputTitle: EditText
+    private lateinit var inputNumber: EditText
     private lateinit var emailText: String
     private lateinit var passwordText: String
     private lateinit var rePasswordText: String
     private lateinit var phoneText: String
+    private lateinit var companyText: String
+    private lateinit var titleText: String
     private lateinit var nameText: String
     private lateinit var FromFragment: String
     private var validName = false
@@ -51,10 +56,12 @@ class RegisterFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         FromFragment = arguments?.getString("fromFragment").toString()
-        email = root.findViewById(R.id.input_email)
+        email = root.findViewById(R.id.input_CorporateEmail)
         passwordEt = root.findViewById(R.id.input_password)
-        rePasswordEt = root.findViewById(R.id.input_RePassword)
-        name = root.findViewById(R.id.input_Name)
+        name = root.findViewById(R.id.input_name)
+        company = root.findViewById(R.id.input_Company)
+        inputTitle = root.findViewById(R.id.input_Title)
+        inputNumber = root.findViewById(R.id.input_Number)
         setListeners()
     }
 
@@ -68,7 +75,9 @@ class RegisterFragment : Fragment() {
             if (registerViewModel.validateDataInfo(
                     emailText
                     , passwordText
-                ) && (nameText.isNotEmpty()) && (rePasswordText.isNotEmpty() && matched && passwordEt.length() >= 6)
+                ) && (nameText.isNotEmpty() && companyText.isNotEmpty() &&
+                        phoneText.isNotEmpty() && titleText.isNotEmpty() && passwordEt.length() >= 6 &&
+                        inputNumber.length() >= 11)
             ) {
                 callRegisterRequest()
             }
@@ -79,7 +88,14 @@ class RegisterFragment : Fragment() {
 
     private fun callRegisterRequest() {
         progressBar.visibility = View.VISIBLE
-        val requestModel = RegisterRequestModel(emailText, passwordText, nameText)
+        val requestModel = RegisterRequestModel(
+            emailText,
+            passwordText,
+            nameText,
+            companyText,
+            titleText,
+            phoneText
+        )
         registerViewModel.register(requestModel)
         registerViewModel.getData().observe(this, Observer {
             progressBar.visibility = View.GONE
@@ -92,16 +108,14 @@ class RegisterFragment : Fragment() {
                     Toast.makeText(activity, error, Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "The email has already been taken", Toast.LENGTH_SHORT).show()
             }
         })
 
     }
 
-
     private fun checkErrorEnabled() {
         getUserInputData()
-        isPasswordMatched()
         validate()
     }
 
@@ -122,21 +136,23 @@ class RegisterFragment : Fragment() {
         } else if (!Validation.validate(passwordText)) {
             Toast.makeText(activity, "empty password please fill it", Toast.LENGTH_SHORT).show()
 
-        } else if (!Validation.validate(rePasswordText)) {
-            Toast.makeText(activity, "please reconfirm your Password", Toast.LENGTH_SHORT).show()
+        } else if (phoneText.isEmpty()) {
+            Toast.makeText(activity, "empty phone please fill it", Toast.LENGTH_SHORT).show()
 
-        } else if (!Validation.validate(nameText)) {
+        } else if (companyText.isEmpty()) {
+            Toast.makeText(activity, "empty company please fill it", Toast.LENGTH_SHORT).show()
+
+        } else if (companyText.isEmpty()) {
+            Toast.makeText(activity, "empty title please fill it", Toast.LENGTH_SHORT).show()
+
+        } else if (nameText.isEmpty()) {
             Toast.makeText(activity, "empty name please fill it", Toast.LENGTH_SHORT).show()
 
-        } else if (passwordEt.length() < 6 || rePasswordText.length < 6) {
-            Toast.makeText(activity, "password must be at least 6 characters", Toast.LENGTH_SHORT)
+        } else if (passwordEt.length() < 6) {
+            Toast.makeText(activity, "password must be at least 6 characters", Toast.LENGTH_LONG)
                 .show()
-        } else if (!matched) {
-            Toast.makeText(
-                activity,
-                "password and confirmed Password not matched",
-                Toast.LENGTH_SHORT
-            )
+        } else if (inputNumber.length() < 11) {
+            Toast.makeText(activity, "phone must be at least 11 characters", Toast.LENGTH_LONG)
                 .show()
         }
     }
@@ -144,8 +160,11 @@ class RegisterFragment : Fragment() {
     private fun getUserInputData() {
         emailText = email.text.toString()
         passwordText = passwordEt.text.toString()
-        rePasswordText = rePasswordEt.text.toString()
         nameText = name.text.toString()
+        phoneText = inputNumber.text.toString()
+        companyText = company.text.toString()
+        titleText = inputTitle.text.toString()
+
     }
 
     private fun hideKeyboard() {
