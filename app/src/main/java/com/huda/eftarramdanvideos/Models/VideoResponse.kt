@@ -14,9 +14,7 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class VideoResponse (
+data class VideoResponse(
+    @SerializedName("data") val data: Data
 
-	@SerializedName("data") val data : List<Data>,
-	@SerializedName("links") val links : Links,
-	@SerializedName("meta") val meta : Meta
 )

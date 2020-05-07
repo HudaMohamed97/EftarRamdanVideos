@@ -97,9 +97,9 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
         setClickListener()
         initRecyclerView()
         val accessToken = loginPreferences.getString("accessToken", "")
-        if (accessToken != null) {
+        /*if (accessToken != null) {
             getQuestions(accessToken)
-        }
+        }*/
         if (accessToken != null) {
             getVideos(accessToken)
         }
@@ -189,21 +189,30 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
                     call: Call<VideoResponse>, response: Response<VideoResponse>
                 ) {
                     if (response.isSuccessful) {
+                        questionProgressBar.visibility = View.GONE
+                        recyclerView.visibility = View.VISIBLE
                         if (response.body()?.data != null) {
                             val videos_list = response.body()?.data
-                            url = videos_list?.get(0)?.url.toString()
-                            videoId = videos_list?.get(0)?.id!!
+                            url = videos_list?.url.toString()
+                            videoId = videos_list?.id!!
                             initializeVideo()
-
+                            val question_list = videos_list.questions
+                            list.clear()
+                            for (data in question_list) {
+                                list.add(data)
+                            }
+                            questionsAdapter.notifyDataSetChanged()
 
                         }
                     } else {
+                        questionProgressBar.visibility = View.GONE
                         Toast.makeText(this@VideosActivity, "Network Error", Toast.LENGTH_SHORT)
                             .show()
                     }
                 }
 
                 override fun onFailure(call: Call<VideoResponse>, t: Throwable) {
+                    questionProgressBar.visibility = View.GONE
                     Toast.makeText(this@VideosActivity, "Network Error", Toast.LENGTH_SHORT)
                         .show()
                 }

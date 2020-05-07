@@ -15,7 +15,7 @@ interface ApiServices {
     @POST("auth/register")
     fun register(@Body registerRequestModel: RegisterRequestModel): Call<ResponseModelData>
 
-    @GET("videos")
+    @GET("videos/single-video")
     fun getVideos(@Header("Authorization") authHeader: String): Call<VideoResponse>
 
     /*@GET("questions")

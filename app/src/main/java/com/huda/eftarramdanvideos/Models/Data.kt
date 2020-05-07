@@ -14,10 +14,10 @@ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLI
 For support, please feel free to contact me at https://www.linkedin.com/in/syedabsar */
 
 
-data class Data (
-
-	@SerializedName("id") val id : Int,
-	@SerializedName("url") val url : String,
-	@SerializedName("init_points") val init_points : Int,
-	@SerializedName("total_points") val total_points : Int
+data class Data(
+    @SerializedName("id") val id: Int,
+    @SerializedName("url") val url: String,
+    @SerializedName("init_points") val init_points: Int,
+    @SerializedName("total_points") val total_points: Int,
+    @SerializedName("questions") val questions: List<QuestionModel>
 )

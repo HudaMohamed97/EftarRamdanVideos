@@ -15,6 +15,7 @@
             android:id="@+id/radioButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:backgroundTint="@color/orange2"
             android:textColor="@color/white"
             android:text="   RadioButton">
 

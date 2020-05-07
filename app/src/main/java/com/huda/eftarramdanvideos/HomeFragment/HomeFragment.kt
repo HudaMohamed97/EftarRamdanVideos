@@ -48,6 +48,10 @@ class HomeFragment : Fragment() {
             findNavController().navigate(R.id.action_home_howtoFragment)
 
         }
+        elearning_Card.setOnClickListener {
+            findNavController().navigate(R.id.action_home_ElearningFragment)
+
+        }
         back_button.setOnClickListener {
             findNavController().navigateUp()
         }
@@ -55,6 +59,7 @@ class HomeFragment : Fragment() {
             callScoreData()
         }
     }
+
     private fun callScoreData() {
         scoreProgressBar.visibility = View.VISIBLE
         val accessToken = loginPreferences.getString("accessToken", "")

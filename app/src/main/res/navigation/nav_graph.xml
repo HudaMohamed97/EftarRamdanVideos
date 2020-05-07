@@ -39,13 +39,31 @@
         <action
             android:id="@+id/action_home_howtoFragment"
             app:destination="@id/HowToFragment" />
-
+        <action
+            android:id="@+id/action_home_ElearningFragment"
+            app:destination="@id/ElearningFragment" />
 
     </fragment>
     <fragment
         android:id="@+id/HowToFragment"
         android:name="com.huda.eftarramdanvideos.ParticapationFragment.HowToParticapateFragment"
         tools:layout="@layout/pdf_fragment">
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/ElearningFragment"
+        android:name="com.huda.eftarramdanvideos.ElearningFragment.ElearningFragment"
+        tools:layout="@layout/elarning_frament">
+        <action
+            android:id="@+id/action_Elearning_to_Answer"
+            app:destination="@id/AnswerFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/AnswerFragment"
+        android:name="com.huda.eftarramdanvideos.ElearningFragment.AnswerFragment"
+        tools:layout="@layout/question_fragment">
 
 
     </fragment>
