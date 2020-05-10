@@ -2,18 +2,16 @@ package com.imagin.myapplication.LoginFragment
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.huda.eftarramdanvideos.Models.Account
-import com.huda.eftarramdanvideos.Models.AccountData
-import com.huda.eftarramdanvideos.Models.MyScore
+import com.huda.eftarramdanvideos.Models.*
 import com.huda.eftarramdanvideos.utilies.Validation
 import com.imagin.myapplication.Models.RegisterRequestModel
-import com.huda.eftarramdanvideos.Models.ResponseModelData
 
 
 class RegisterViewModel : ViewModel() {
     private var repositoryHelper: RegisterRepository = RegisterRepository()
     private lateinit var mutableLiveData: MutableLiveData<ResponseModelData>
     private lateinit var liveData: MutableLiveData<MyScore>
+    private lateinit var liveDataReset: MutableLiveData<SubmitModel>
 
     fun validateDataInfo(
         emailEt: String,
@@ -40,6 +38,15 @@ class RegisterViewModel : ViewModel() {
 
     fun getScoreData(): MutableLiveData<MyScore> {
         return liveData
+    }
+
+    fun resetPass(email: String) {
+        liveDataReset = repositoryHelper.resetEmail(email)
+
+    }
+
+    fun getResetPassData(): MutableLiveData<SubmitModel> {
+        return liveDataReset
     }
 }
 

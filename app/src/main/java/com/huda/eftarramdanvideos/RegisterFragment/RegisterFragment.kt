@@ -1,6 +1,7 @@
 package com.huda.eftarramdanvideos.RegisterFragment
 
 import android.content.Context
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -55,6 +56,7 @@ class RegisterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         FromFragment = arguments?.getString("fromFragment").toString()
         email = root.findViewById(R.id.input_CorporateEmail)
         passwordEt = root.findViewById(R.id.input_password)
@@ -108,7 +110,8 @@ class RegisterFragment : Fragment() {
                     Toast.makeText(activity, error, Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(activity, "The email has already been taken", Toast.LENGTH_SHORT).show()
+                Toast.makeText(activity, "The email has already been taken", Toast.LENGTH_SHORT)
+                    .show()
             }
         })
 

@@ -16,6 +16,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/back"
+            android:layout_width="40dp"
+            android:layout_height="@dimen/space_28"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:text="LogOut"
+            android:textColor="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/back" />
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -67,7 +80,7 @@
             android:orientation="vertical">
 
             <ProgressBar
-                android:id="@+id/OptionsProgressBar"
+                android:id="@+id/OptionsFragmentProgressBar"
                 style="?android:attr/progressBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
@@ -78,7 +91,7 @@
                 android:visibility="gone" />
 
             <TextView
-                android:id="@+id/questionTitle"
+                android:id="@+id/questionFragmentTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/space_20"
@@ -99,7 +112,7 @@
     </androidx.cardview.widget.CardView>
 
     <com.google.android.material.button.MaterialButton
-        android:id="@+id/submitQuestion"
+        android:id="@+id/submitFragmentQuestion"
         android:layout_width="250dp"
         android:layout_height="55dp"
         android:layout_marginStart="8dp"

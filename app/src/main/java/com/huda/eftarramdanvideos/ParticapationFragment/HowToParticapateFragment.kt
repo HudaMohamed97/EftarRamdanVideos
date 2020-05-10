@@ -1,5 +1,6 @@
 package com.huda.eftarramdanvideos.ParticapationFragment
 
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -29,10 +30,19 @@ class HowToParticapateFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
+
+
         back_button.setOnClickListener {
+            activity!!.finish()
+        }
+        back.setOnClickListener {
             findNavController().navigateUp()
         }
         pdf_viewer.fromAsset("Application.pdf").load()
+
+
     }
 
 

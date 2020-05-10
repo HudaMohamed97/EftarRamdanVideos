@@ -3,6 +3,7 @@ package com.huda.eftarramdanvideos.LoginFragment
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
@@ -47,15 +48,16 @@ class LoginFragment : Fragment(), LoginInterface {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setClickListeners()
     }
 
     override fun setClickListeners() {
 
-        /*  forgetPassword.setOnClickListener{
-              findNavController().navigate(R.id.action_LoginFragment_to_ForgetPassword)
+        forgetPassword.setOnClickListener {
+            findNavController().navigate(R.id.action_login_to_ResetFragmnet)
 
-          }*/
+        }
         showPassword.setOnClickListener {
             var cursor = passwordEt.selectionStart
             if (clicked) {
@@ -70,10 +72,10 @@ class LoginFragment : Fragment(), LoginInterface {
             }
 
         }
-        val mainLayout = root.findViewById(R.id.mainLayout) as View
-        val button = root.findViewById(R.id.btn_login) as Button
-        email = root.findViewById(R.id.input_email)
-        passwordEt = root.findViewById(R.id.input_password)
+        val mainLayout = root!!.findViewById(R.id.mainLayout) as View
+        val button = root!!.findViewById(R.id.btn_login) as Button
+        email = root!!.findViewById(R.id.input_email)
+        passwordEt = root!!.findViewById(R.id.input_password)
         mainLayout.setOnClickListener {
             hideKeyboard()
         }

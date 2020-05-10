@@ -15,6 +15,11 @@ interface ApiServices {
     @POST("auth/register")
     fun register(@Body registerRequestModel: RegisterRequestModel): Call<ResponseModelData>
 
+
+    @POST("auth/reset-password")
+    fun reset(@Body body: Map<String, String>): Call<SubmitModel>
+
+
     @GET("videos/single-video")
     fun getVideos(@Header("Authorization") authHeader: String): Call<VideoResponse>
 

@@ -1,10 +1,7 @@
 package com.imagin.myapplication.LoginFragment
 
 import androidx.lifecycle.MutableLiveData
-import com.huda.eftarramdanvideos.Models.Account
-import com.huda.eftarramdanvideos.Models.AccountData
-import com.huda.eftarramdanvideos.Models.MyScore
-import com.huda.eftarramdanvideos.Models.ResponseModelData
+import com.huda.eftarramdanvideos.Models.*
 import com.huda.eftarramdanvideos.NetworkLayer.Webservice
 import com.imagin.myapplication.Models.RegisterRequestModel
 import retrofit2.Call
@@ -72,7 +69,39 @@ class RegisterRepository {
 
     }
 
+    fun resetEmail(
+        email: String
+    ): MutableLiveData<SubmitModel> {
 
+        val answerData = MutableLiveData<SubmitModel>()
+        val body = mapOf(
+            "email" to email
+        )
+        Webservice.getInstance().api.reset(body)
+            .enqueue(object : Callback<SubmitModel> {
+                override fun onResponse(
+                    call: Call<SubmitModel>, response: Response<SubmitModel>
+                ) {
+                    if (response.isSuccessful) {
+                        answerData.value = response.body()
+                    } else {
+                        if (response.code() == 400) {
+                            answerData.value = SubmitModel("NoAccount", "NoAccount")
+                        } else if (response.code() == 422) {
+                            answerData.value = SubmitModel("NotValid", "NotValid")
+
+                        } else {
+                            answerData.value = response.body()
+                        }
+                    }
+                }
+
+                override fun onFailure(call: Call<SubmitModel>, t: Throwable) {
+                    answerData.value = null
+                }
+            })
+        return answerData
+    }
 }
 
 

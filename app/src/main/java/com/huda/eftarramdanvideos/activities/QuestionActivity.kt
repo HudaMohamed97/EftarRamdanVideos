@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.question_activity.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import kotlin.system.exitProcess
 
 class QuestionActivity : AppCompatActivity() {
     private var questionId: Int = 0
@@ -60,6 +61,14 @@ class QuestionActivity : AppCompatActivity() {
                     submitAnswer(accessToken)
                 }
             }
+        }
+
+        logOutButton.setOnClickListener {
+            this.finish()
+        }
+        back.setOnClickListener {
+            this.moveTaskToBack(true)
+            this.finish()
         }
     }
 

@@ -21,6 +21,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/back"
+                android:layout_width="40dp"
+                android:layout_height="@dimen/space_28"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:text="LogOut"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/back" />
+
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -30,7 +43,7 @@
                 android:text="E_Learning"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
+                android:gravity="center"
                 app:layout_constraintTop_toTopOf="parent">
 
             </TextView>
@@ -95,23 +108,23 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
                 android:background="@color/black"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linksView">
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="@dimen/space_10"
                     android:layout_margin="@dimen/space_10"
+                    android:layout_marginStart="@dimen/space_10"
+                    android:layout_marginLeft="@dimen/space_10"
                     android:text="Questions"
                     android:textColor="@color/white"
                     android:textSize="@dimen/space_20"
-                    android:textStyle="bold"
-                    android:layout_marginStart="@dimen/space_10">
+                    android:textStyle="bold">
 
                 </TextView>
 

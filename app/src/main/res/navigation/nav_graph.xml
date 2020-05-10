@@ -16,6 +16,9 @@
         <action
             android:id="@+id/action_login_to_Home"
             app:destination="@id/HomeFragment" />
+        <action
+            android:id="@+id/action_login_to_ResetFragmnet"
+            app:destination="@id/ResetPasswrdFragment" />
 
     </fragment>
 
@@ -52,18 +55,35 @@
 
     </fragment>
     <fragment
+        android:id="@+id/WebViewFragment"
+        android:name="com.huda.eftarramdanvideos.ElearningFragment.WebViewFragment"
+        tools:layout="@layout/webview">
+
+
+    </fragment>
+    <fragment
         android:id="@+id/ElearningFragment"
         android:name="com.huda.eftarramdanvideos.ElearningFragment.ElearningFragment"
         tools:layout="@layout/elarning_frament">
         <action
             android:id="@+id/action_Elearning_to_Answer"
             app:destination="@id/AnswerFragment" />
+        <action
+            android:id="@+id/action_Elearning_to_WebViewFragment"
+            app:destination="@id/WebViewFragment" />
 
     </fragment>
     <fragment
         android:id="@+id/AnswerFragment"
         android:name="com.huda.eftarramdanvideos.ElearningFragment.AnswerFragment"
         tools:layout="@layout/question_fragment">
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/ResetPasswrdFragment"
+        android:name="com.huda.eftarramdanvideos.ResetPasswordFragment.ResetPasswrdFragment"
+        tools:layout="@layout/reset_fragment">
 
 
     </fragment>

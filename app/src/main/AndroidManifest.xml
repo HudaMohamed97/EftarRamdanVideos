@@ -22,6 +22,7 @@
         android:theme="@style/AppTheme">
         <activity
             android:name=".activities.VideosActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:screenOrientation="portrait"></activity>
         <activity
             android:name=".activities.QuestionActivity"

@@ -4,26 +4,22 @@ import Answers
 import SingelQuestionData
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.huda.eftarramdanvideos.Adapters.ElarningQuestionsAdapter
 import com.huda.eftarramdanvideos.Adapters.QuestionRatingAdapter
-import com.huda.eftarramdanvideos.Models.QuestionModel
 import com.huda.eftarramdanvideos.Models.SubmitModel
 import com.huda.eftarramdanvideos.NetworkLayer.Webservice
 import com.huda.eftarramdanvideos.R
-import kotlinx.android.synthetic.main.activity_video.*
-import kotlinx.android.synthetic.main.home_fragment.*
-import kotlinx.android.synthetic.main.question_activity.*
+import kotlinx.android.synthetic.main.question_fragment.*
+import kotlinx.android.synthetic.main.question_fragment.back
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -50,6 +46,8 @@ class AnswerFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
+
         setClickListener()
         initRecyclerView()
         questionId = arguments?.getInt("questionId")!!
@@ -62,7 +60,7 @@ class AnswerFragment : Fragment() {
     private fun setClickListener() {
         recyclerView = root.findViewById(R.id.answersRecycler)!!
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
-        submitQuestion.setOnClickListener {
+        submitFragmentQuestion.setOnClickListener {
             if (answerId == -1) {
                 Toast.makeText(
                     activity,
@@ -76,6 +74,12 @@ class AnswerFragment : Fragment() {
                     submitAnswer(accessToken)
                 }
             }
+        }
+        logOutButton.setOnClickListener {
+            activity!!.finish()
+        }
+        back.setOnClickListener {
+            findNavController().navigateUp()
         }
     }
 
@@ -92,18 +96,18 @@ class AnswerFragment : Fragment() {
     }
 
     fun getSingelQuestion(accessToken: String) {
-        OptionsProgressBar.visibility = View.VISIBLE
+        OptionsFragmentProgressBar.visibility = View.VISIBLE
         Webservice.getInstance().api.getSingelQuestion(questionId, accessToken)
             .enqueue(object : Callback<SingelQuestionData> {
                 override fun onResponse(
                     call: Call<SingelQuestionData>, response: Response<SingelQuestionData>
                 ) {
-                    OptionsProgressBar.visibility = View.GONE
+                    OptionsFragmentProgressBar.visibility = View.GONE
 
                     if (response.isSuccessful) {
                         val data = response.body()?.data
                         if (response.body()?.data != null) {
-                            questionTitle.text = data?.title
+                            questionFragmentTitle.text = data?.title
                             for (answer in data!!.answers!!) {
                                 list.add(answer)
                             }
@@ -118,7 +122,7 @@ class AnswerFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<SingelQuestionData>, t: Throwable) {
-                    OptionsProgressBar.visibility = View.GONE
+                    OptionsFragmentProgressBar.visibility = View.GONE
                     Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT)
                         .show()
                 }
@@ -131,7 +135,7 @@ class AnswerFragment : Fragment() {
         val body = mapOf(
             "answer_id" to answerId.toString()
         )
-        OptionsProgressBar.visibility = View.VISIBLE
+        OptionsFragmentProgressBar.visibility = View.VISIBLE
         Webservice.getInstance().api.submitQuestion(questionId, body, accessToken)
             .enqueue(object : Callback<SubmitModel> {
 
@@ -139,7 +143,7 @@ class AnswerFragment : Fragment() {
                     call: Call<SubmitModel>,
                     response: Response<SubmitModel>
                 ) {
-                    OptionsProgressBar.visibility = View.GONE
+                    OptionsFragmentProgressBar.visibility = View.GONE
                     if (response.isSuccessful) {
                         Toast.makeText(
                             activity,
@@ -165,7 +169,7 @@ class AnswerFragment : Fragment() {
                 }
 
                 override fun onFailure(call: Call<SubmitModel>, t: Throwable) {
-                    OptionsProgressBar.visibility = View.GONE
+                    OptionsFragmentProgressBar.visibility = View.GONE
                     Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT)
                         .show()
                 }

@@ -2,6 +2,7 @@ package com.huda.eftarramdanvideos.ElearningFragment
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +15,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.huda.eftarramdanvideos.Adapters.ElarningQuestionsAdapter
+import com.huda.eftarramdanvideos.Adapters.ElarningQuestionsLinks
 import com.huda.eftarramdanvideos.Models.QuestionModel
 import com.huda.eftarramdanvideos.R
-import kotlinx.android.synthetic.main.activity_video.*
-import kotlinx.android.synthetic.main.home_fragment.*
+import kotlinx.android.synthetic.main.activity_video.questionProgressBar
+import kotlinx.android.synthetic.main.activity_video.questionsRecycler
+import kotlinx.android.synthetic.main.elarning_frament.*
 
 
 class ElearningFragment : Fragment() {
@@ -25,10 +28,11 @@ class ElearningFragment : Fragment() {
     private lateinit var elarningViewModel: ElearningViewModel
     private lateinit var loginPreferences: SharedPreferences
     private val list = arrayListOf<QuestionModel>()
+    private val listLinks = arrayListOf<String>()
     private lateinit var recyclerView: RecyclerView
     private lateinit var linksRecycler: RecyclerView
     private lateinit var questionsAdapter: ElarningQuestionsAdapter
-    private lateinit var questionsAdapter1: ElarningQuestionsAdapter
+    private lateinit var questionsAdapterLinks: ElarningQuestionsLinks
 
 
     override fun onCreateView(
@@ -43,6 +47,7 @@ class ElearningFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setListeners()
         initRecyclerView()
         callElearningQuestions()
@@ -53,20 +58,24 @@ class ElearningFragment : Fragment() {
         linksRecycler = root.findViewById(R.id.linksRecycler)!!
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
         back_button.setOnClickListener {
+           activity!!.finish()
+        }
+        back.setOnClickListener {
             findNavController().navigateUp()
         }
     }
 
 
     private fun initRecyclerView() {
+        initRecyclerLinks()
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        val layoutManager1 = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
+        val layoutManagerLinks = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
         questionsAdapter = ElarningQuestionsAdapter(list)
-        questionsAdapter1 = ElarningQuestionsAdapter(list)
+        questionsAdapterLinks = ElarningQuestionsLinks(listLinks)
         questionsRecycler.layoutManager = layoutManager
         questionsRecycler.adapter = questionsAdapter
-        /*linksRecycler.layoutManager = layoutManager1
-        linksRecycler.adapter = questionsAdapter1*/
+        linksRecycler.layoutManager = layoutManagerLinks
+        linksRecycler.adapter = questionsAdapterLinks
         questionsAdapter.setOnItemListener(object : ElarningQuestionsAdapter.OnItemClickListener {
             override fun onItemClicked(position: Int) {
                 val bundle = Bundle()
@@ -75,7 +84,24 @@ class ElearningFragment : Fragment() {
 
             }
         })
+        questionsAdapterLinks.setOnItemListener(object :
+            ElarningQuestionsLinks.OnItemClickListener {
+            override fun onItemClicked(position: Int) {
+                val bundle = Bundle()
+                bundle.putString("url", listLinks[position])
+                findNavController().navigate(R.id.action_Elearning_to_WebViewFragment, bundle)
 
+            }
+        })
+
+    }
+
+    private fun initRecyclerLinks() {
+        listLinks.add("https://dcgedownload.lenovo.com/lgpe/SCORMParentPage.html?instanceUrl=https://lenovoemea.my.salesforce.com&sessionId=00Dd0000000dz2o!AR4AQEeKOvBQOpDEk8eqISsAbgk6eSdgV5mk7aK2xRAGnLjtxknexe5mGtUifX_Jn7KMezCXkqcUnVVr0pLniTnm_EXmql01&myCourseId=a2r0X000002mC4wQAE&scormUrl=https://dcgedownload.lenovo.com/lgpe/OPSW113/EEN/CourseFiles/index_lms.html")
+        listLinks.add("https://dcgedownload.lenovo.com/lgpe/SCORMParentPage.html?instanceUrl=https://lenovoemea.my.salesforce.com&sessionId=00Dd0000000dz2o!AR4AQEeKOvBQOpDEk8eqISsAbgk6eSdgV5mk7aK2xRAGnLjtxknexe5mGtUifX_Jn7KMezCXkqcUnVVr0pLniTnm_EXmql01&myCourseId=a2r0X000002mCEbQAM&scormUrl=https://dcgedownload.lenovo.com/lgpe/STBW001/EEN/CourseFiles/index_lms.html")
+        listLinks.add("https://dcgedownload.lenovo.com/lgpe/SCORMParentPage.html?instanceUrl=https://lenovoemea.my.salesforce.com&sessionId=00Dd0000000dz2o!AR4AQEeKOvBQOpDEk8eqISsAbgk6eSdgV5mk7aK2xRAGnLjtxknexe5mGtUifX_Jn7KMezCXkqcUnVVr0pLniTnm_EXmql01&myCourseId=a2r0X000002mCTXQA2&scormUrl=https://dcgedownload.lenovo.com/lgpe/PTSW120/EEN/CourseFiles/index_lms.html")
+        listLinks.add("https://dcgedownload.lenovo.com/lgpe/SCORMParentPage.html?instanceUrl=https://lenovoemea.my.salesforce.com&sessionId=00Dd0000000dz2o!AR4AQEeKOvBQOpDEk8eqISsAbgk6eSdgV5mk7aK2xRAGnLjtxknexe5mGtUifX_Jn7KMezCXkqcUnVVr0pLniTnm_EXmql01&myCourseId=a2r0X000002mIfYQAU&scormUrl=https://dcgedownload.lenovo.com/lgpe/SSCW001/EEN/CourseFiles/index_lms.html")
+        listLinks.add("https://dcgedownload.lenovo.com/lgpe/SCORMParentPage.html?instanceUrl=https://lenovoemea.my.salesforce.com&sessionId=00Dd0000000dz2o!AR4AQIq1gCfnb.i44gHJ9fwhqKOLjLlZNfxtystRbl3eoR9H8bt1.F6Ryrkvm2gfF1bcP8aM_mLZKEs6jwiXgN0wGQCcN9zq&myCourseId=a2r0X000002mIfxQAE&scormUrl=https://dcgedownload.lenovo.com/lgpe/STCW051/EEN/CourseFiles/index_lms.html")
     }
 
     private fun callElearningQuestions() {

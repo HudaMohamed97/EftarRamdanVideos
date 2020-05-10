@@ -67,7 +67,7 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
             if (accessToken != null && videoId != -1) {
                 submitStartVideo(videoId, accessToken)
             }
-            Toast.makeText(this@VideosActivity, "started", Toast.LENGTH_LONG).show()
+            // Toast.makeText(this@VideosActivity, "started", Toast.LENGTH_LONG).show()
         }
 
         override fun onLoaded(p0: String?) {
@@ -79,7 +79,7 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
             if (accessToken != null && videoId != -1) {
                 submitEndVideo(videoId, accessToken)
             }
-            Toast.makeText(this@VideosActivity, "ended", Toast.LENGTH_LONG).show()
+            //  Toast.makeText(this@VideosActivity, "ended", Toast.LENGTH_LONG).show()
 
         }
 

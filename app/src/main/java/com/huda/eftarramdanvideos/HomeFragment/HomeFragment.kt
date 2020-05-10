@@ -2,6 +2,8 @@ package com.huda.eftarramdanvideos.HomeFragment
 
 import android.content.Context
 import android.content.SharedPreferences
+import android.content.pm.ActivityInfo
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.huda.eftarramdanvideos.R
 import com.imagin.myapplication.LoginFragment.RegisterViewModel
 import kotlinx.android.synthetic.main.home_fragment.*
+import kotlin.system.exitProcess
 
 
 class HomeFragment : Fragment() {
@@ -34,12 +37,23 @@ class HomeFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setListeners()
         loginPreferences = activity!!.getSharedPreferences("loginPrefs", Context.MODE_PRIVATE)
         callScoreData()
     }
 
     private fun setListeners() {
+
+        back_button.setOnClickListener {
+            activity!!.moveTaskToBack(true)
+            activity!!.finish()
+        }
+        back.setOnClickListener {
+            findNavController().navigateUp()
+        }
+
+
         webinarCard.setOnClickListener {
             findNavController().navigate(R.id.action_Register_to_videos)
 
@@ -51,9 +65,6 @@ class HomeFragment : Fragment() {
         elearning_Card.setOnClickListener {
             findNavController().navigate(R.id.action_home_ElearningFragment)
 
-        }
-        back_button.setOnClickListener {
-            findNavController().navigateUp()
         }
         score_card.setOnClickListener {
             callScoreData()
