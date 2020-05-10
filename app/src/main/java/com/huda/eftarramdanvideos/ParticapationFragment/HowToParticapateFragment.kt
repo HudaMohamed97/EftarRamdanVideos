@@ -35,7 +35,7 @@ class HowToParticapateFragment : Fragment() {
         back_button.setOnClickListener {
             findNavController().navigateUp()
         }
-        pdf_viewer.fromAsset("Application.pdf").load()
+        pdf_viewer.fromAsset("Lenovoprogram.pdf").load()
 
 
     }
