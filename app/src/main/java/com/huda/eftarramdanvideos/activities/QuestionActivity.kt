@@ -63,11 +63,7 @@ class QuestionActivity : AppCompatActivity() {
             }
         }
 
-        logOutButton.setOnClickListener {
-            this.finish()
-        }
-        back.setOnClickListener {
-            this.moveTaskToBack(true)
+        back_button.setOnClickListener {
             this.finish()
         }
     }

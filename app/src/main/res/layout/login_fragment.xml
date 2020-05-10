@@ -74,7 +74,6 @@
                 android:hint="Email"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/transparent"
-                android:textColorHint="@color/not_black"
                 android:textCursorDrawable="@color/black"
                 android:layout_marginLeft="5dp" />
 
@@ -105,7 +104,6 @@
                 android:singleLine="true"
                 android:textColor="@color/black"
                 android:textColorHighlight="@color/transparent"
-                android:textColorHint="@color/not_black"
                 android:visibility="visible"
                 android:layout_marginLeft="50dp" />
 

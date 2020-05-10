@@ -6,11 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.huda.eftarramdanvideos.ElearningFragment.LinkModel
 import com.huda.eftarramdanvideos.Models.QuestionModel
 import com.huda.eftarramdanvideos.R
 
 
-class ElarningQuestionsLinks(modelFeedArrayList: List<String>) :
+class ElarningQuestionsLinks(modelFeedArrayList: List<LinkModel>) :
     RecyclerView.Adapter<ElarningQuestionsLinks.MyViewHolder>() {
 
     lateinit var onItemClickListener: OnItemClickListener
@@ -33,7 +34,7 @@ class ElarningQuestionsLinks(modelFeedArrayList: List<String>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val questionModel = questionArrayList[position]
-        holder.Questiontitle.text = questionModel
+        holder.Questiontitle.text = questionModel.linkName
 
         holder.itemView.setOnClickListener {
             if (onItemClickListener != null && position != RecyclerView.NO_POSITION) {

@@ -19,7 +19,6 @@ import com.huda.eftarramdanvideos.Models.SubmitModel
 import com.huda.eftarramdanvideos.NetworkLayer.Webservice
 import com.huda.eftarramdanvideos.R
 import kotlinx.android.synthetic.main.question_fragment.*
-import kotlinx.android.synthetic.main.question_fragment.back
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -75,10 +74,8 @@ class AnswerFragment : Fragment() {
                 }
             }
         }
-        logOutButton.setOnClickListener {
-            activity!!.finish()
-        }
-        back.setOnClickListener {
+
+        back_button.setOnClickListener {
             findNavController().navigateUp()
         }
     }

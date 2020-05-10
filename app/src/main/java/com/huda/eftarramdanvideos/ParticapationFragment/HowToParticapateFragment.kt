@@ -32,12 +32,7 @@ class HowToParticapateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
 
-
-
         back_button.setOnClickListener {
-            activity!!.finish()
-        }
-        back.setOnClickListener {
             findNavController().navigateUp()
         }
         pdf_viewer.fromAsset("Application.pdf").load()

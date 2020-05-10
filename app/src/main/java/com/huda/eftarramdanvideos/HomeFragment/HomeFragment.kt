@@ -3,7 +3,6 @@ package com.huda.eftarramdanvideos.HomeFragment
 import android.content.Context
 import android.content.SharedPreferences
 import android.content.pm.ActivityInfo
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -16,7 +15,6 @@ import androidx.navigation.fragment.findNavController
 import com.huda.eftarramdanvideos.R
 import com.imagin.myapplication.LoginFragment.RegisterViewModel
 import kotlinx.android.synthetic.main.home_fragment.*
-import kotlin.system.exitProcess
 
 
 class HomeFragment : Fragment() {
@@ -43,18 +41,44 @@ class HomeFragment : Fragment() {
         callScoreData()
     }
 
+    override fun onResume() {
+        super.onResume()
+        showViews()
+    }
+
+    private fun showViews() {
+        howToCard.visibility = View.VISIBLE
+        score_card.visibility = View.VISIBLE
+        elearning_Card.visibility = View.VISIBLE
+        webinarCard.visibility = View.VISIBLE
+
+
+    }
+
+
+    private fun hideViews() {
+        howToCard.visibility = View.GONE
+        elearning_Card.visibility = View.GONE
+        webinarCard.visibility = View.GONE
+        score_card.visibility = View.GONE
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+    }
+
     private fun setListeners() {
 
         back_button.setOnClickListener {
             activity!!.moveTaskToBack(true)
             activity!!.finish()
         }
-        back.setOnClickListener {
-            findNavController().navigateUp()
-        }
+
 
 
         webinarCard.setOnClickListener {
+            hideViews()
             findNavController().navigate(R.id.action_Register_to_videos)
 
         }
@@ -70,6 +94,7 @@ class HomeFragment : Fragment() {
             callScoreData()
         }
     }
+
 
     private fun callScoreData() {
         scoreProgressBar.visibility = View.VISIBLE

@@ -16,23 +16,11 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/space_60"
             android:layout_marginBottom="30dp"
-            android:background="@color/dark_color2"
+            android:background="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/back"
-                android:layout_width="40dp"
-                android:layout_height="@dimen/space_28"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:text="LogOut"
-                android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@drawable/back" />
 
             <TextView
                 android:layout_width="match_parent"
@@ -41,24 +29,32 @@
                 android:text="E_Learning"
                 android:textColor="@color/white"
                 android:textStyle="bold"
-                android:gravity="center"
-                app:layout_constraintTop_toTopOf="parent">
-
-            </TextView>
+                android:gravity="start"
+                android:layout_marginStart="@dimen/space_20"
+                app:layout_constraintTop_toTopOf="parent"
+                android:layout_marginLeft="@dimen/space_20" />
 
 
             <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/back_button"
-                android:layout_width="40dp"
-                android:layout_height="@dimen/space_28"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/space_20"
                 android:text="LogOut"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:srcCompat="@mipmap/exit_icon" />
+                app:srcCompat="@drawable/back" />
+
+            <View
+                android:layout_width="150dp"
+                android:layout_height="@dimen/space_3"
+                android:background="@color/orange"
+                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginTop="5dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/title"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
