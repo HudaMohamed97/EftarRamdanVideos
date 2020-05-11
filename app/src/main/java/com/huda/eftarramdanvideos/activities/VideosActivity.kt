@@ -62,24 +62,20 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
         }
 
         override fun onVideoStarted() {
-            Log.i("hhhh", "started")
             val accessToken = loginPreferences.getString("accessToken", "")
             if (accessToken != null && videoId != -1) {
                 submitStartVideo(videoId, accessToken)
             }
-            // Toast.makeText(this@VideosActivity, "started", Toast.LENGTH_LONG).show()
         }
 
         override fun onLoaded(p0: String?) {
         }
 
         override fun onVideoEnded() {
-            Log.i("hhhh", "ended")
             val accessToken = loginPreferences.getString("accessToken", "")
             if (accessToken != null && videoId != -1) {
                 submitEndVideo(videoId, accessToken)
             }
-            //  Toast.makeText(this@VideosActivity, "ended", Toast.LENGTH_LONG).show()
 
         }
 
@@ -132,7 +128,8 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
 
         if (!p2) {
             if (url != null) {
-                val videoId = getYouTubeId(url)
+                // val videoId = getYouTubeId(url)
+                val videoId = url
                 player?.loadVideo(videoId)
 
             }

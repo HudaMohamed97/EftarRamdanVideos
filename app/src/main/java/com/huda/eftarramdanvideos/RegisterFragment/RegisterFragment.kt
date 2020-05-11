@@ -79,7 +79,7 @@ class RegisterFragment : Fragment() {
                     , passwordText
                 ) && (nameText.isNotEmpty() && companyText.isNotEmpty() &&
                         phoneText.isNotEmpty() && titleText.isNotEmpty() && passwordEt.length() >= 6 &&
-                        inputNumber.length() >= 11)
+                        inputNumber.length() >= 9)
             ) {
                 callRegisterRequest()
             }
@@ -154,8 +154,8 @@ class RegisterFragment : Fragment() {
         } else if (passwordEt.length() < 6) {
             Toast.makeText(activity, "password must be at least 6 characters", Toast.LENGTH_LONG)
                 .show()
-        } else if (inputNumber.length() < 11) {
-            Toast.makeText(activity, "phone must be at least 11 characters", Toast.LENGTH_LONG)
+        } else if (inputNumber.length() < 9) {
+            Toast.makeText(activity, "phone must be at least 9 characters", Toast.LENGTH_LONG)
                 .show()
         }
     }

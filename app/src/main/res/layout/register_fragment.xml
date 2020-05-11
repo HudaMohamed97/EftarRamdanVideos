@@ -12,11 +12,17 @@
         android:clickable="true"
         android:focusable="true">
 
-        <ImageView
+        <TextView
             android:id="@+id/logo"
-            android:layout_width="30dp"
-            android:layout_height="40dp"
-            android:visibility="invisible"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/space_20"
+            android:gravity="center"
+            android:text="CREATE ACCOUNT"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/email_login_form"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -56,7 +62,7 @@
                     android:backgroundTint="@color/transparent"
                     android:gravity="center_vertical"
                     android:hint="Full Name"
-                    android:inputType="textEmailAddress"
+                    android:inputType="text"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -81,7 +87,8 @@
                     android:backgroundTint="@color/transparent"
                     android:gravity="center_vertical"
                     android:hint="Company"
-                    android:inputType="textEmailAddress"
+                    android:importantForAutofill="no"
+                    android:inputType="textNoSuggestions"
                     android:textColor="@color/black" />
 
             </LinearLayout>
@@ -154,7 +161,7 @@
                     android:backgroundTint="@color/transparent"
                     android:gravity="center_vertical"
                     android:hint="Corporate Email"
-                    android:inputType="textEmailAddress"
+                    android:inputType="textEmailAddress|textNoSuggestions"
                     android:maxLines="1"
                     android:singleLine="true"
                     android:textColor="@color/black"

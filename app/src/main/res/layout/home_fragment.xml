@@ -23,10 +23,12 @@
             android:layout_marginStart="@dimen/space_20"
             android:layout_marginLeft="@dimen/space_20"
             android:layout_marginTop="@dimen/space_20"
+            android:layout_marginEnd="@dimen/space_20"
             android:gravity="start"
             android:text="HOME"
             android:textColor="@color/white"
             android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
         </TextView>

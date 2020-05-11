@@ -22,7 +22,7 @@
             android:layout_marginBottom="@dimen/space_10"
             android:text="Question Someting ??"
             android:textColor="@color/white"
-            android:textSize="10sp"
+            android:textSize="12sp"
             android:textStyle="bold" />
 
         <TextView

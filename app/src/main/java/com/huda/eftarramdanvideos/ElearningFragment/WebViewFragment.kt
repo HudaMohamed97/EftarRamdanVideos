@@ -33,6 +33,8 @@ class WebViewFragment : Fragment() {
         browser.settings.displayZoomControls = true
         browser.settings.loadWithOverviewMode = true
          browser.settings.useWideViewPort = true
+        browser.isVerticalScrollBarEnabled = true
+        browser.isHorizontalScrollBarEnabled = true
         browser.scrollBarStyle = WebView.SCROLLBARS_INSIDE_OVERLAY
         /*  browser.settings.builtInZoomControls = true
           browser.isScrollbarFadingEnabled = false*/
