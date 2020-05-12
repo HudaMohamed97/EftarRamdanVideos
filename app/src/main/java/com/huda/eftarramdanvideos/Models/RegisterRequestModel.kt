@@ -8,5 +8,6 @@ data class RegisterRequestModel(
     @SerializedName("name") val name: String,
     @SerializedName("company") val company : String,
     @SerializedName("title") val title : String,
-    @SerializedName("phone") val phone: String
+    @SerializedName("phone") val phone: String,
+    @SerializedName("country") val country: String
 )

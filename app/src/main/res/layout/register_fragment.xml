@@ -94,6 +94,32 @@
             </LinearLayout>
 
             <LinearLayout
+                android:id="@+id/country"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:layout_marginTop="15dp"
+                android:background="@drawable/editbox"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <EditText
+                    android:id="@+id/input_country"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="start"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginLeft="5dp"
+                    android:backgroundTint="@color/transparent"
+                    android:gravity="center_vertical"
+                    android:hint="Country"
+                    android:importantForAutofill="no"
+                    android:inputType="textNoSuggestions"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/Title"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"

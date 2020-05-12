@@ -36,6 +36,7 @@ class RegisterFragment : Fragment() {
     private lateinit var phoneText: String
     private lateinit var companyText: String
     private lateinit var titleText: String
+    private lateinit var countryText: String
     private lateinit var nameText: String
     private lateinit var FromFragment: String
     private var validName = false
@@ -77,7 +78,7 @@ class RegisterFragment : Fragment() {
             if (registerViewModel.validateDataInfo(
                     emailText
                     , passwordText
-                ) && (nameText.isNotEmpty() && companyText.isNotEmpty() &&
+                ) && (nameText.isNotEmpty() && companyText.isNotEmpty() && countryText.isNotEmpty() &&
                         phoneText.isNotEmpty() && titleText.isNotEmpty() && passwordEt.length() >= 6 &&
                         inputNumber.length() >= 9)
             ) {
@@ -96,7 +97,8 @@ class RegisterFragment : Fragment() {
             nameText,
             companyText,
             titleText,
-            phoneText
+            phoneText,
+            countryText
         )
         registerViewModel.register(requestModel)
         registerViewModel.getData().observe(this, Observer {
@@ -142,6 +144,9 @@ class RegisterFragment : Fragment() {
         } else if (phoneText.isEmpty()) {
             Toast.makeText(activity, "empty phone please fill it", Toast.LENGTH_SHORT).show()
 
+        } else if (countryText.isEmpty()) {
+            Toast.makeText(activity, "empty country please fill it", Toast.LENGTH_SHORT).show()
+
         } else if (companyText.isEmpty()) {
             Toast.makeText(activity, "empty company please fill it", Toast.LENGTH_SHORT).show()
 
@@ -167,6 +172,7 @@ class RegisterFragment : Fragment() {
         phoneText = inputNumber.text.toString()
         companyText = company.text.toString()
         titleText = inputTitle.text.toString()
+        countryText = input_country.text.toString()
 
     }
 
