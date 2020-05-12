@@ -1,5 +1,6 @@
 package com.huda.eftarramdanvideos.ElearningFragment
 
+import android.annotation.SuppressLint
 import android.content.pm.ActivityInfo
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -28,14 +29,13 @@ class WebViewFragment : Fragment() {
         activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         val url = arguments?.getString("url")!!
         val browser = root.findViewById<WebView>(R.id.webview)
-        browser.setInitialScale(1)
         browser.settings.javaScriptEnabled = true
         browser.settings.displayZoomControls = true
         browser.settings.loadWithOverviewMode = true
          browser.settings.useWideViewPort = true
         browser.isVerticalScrollBarEnabled = true
         browser.isHorizontalScrollBarEnabled = true
-        browser.scrollBarStyle = WebView.SCROLLBARS_INSIDE_OVERLAY
+      //  browser.scrollBarStyle = WebView.SCROLLBARS_INSIDE_OVERLAY
         /*  browser.settings.builtInZoomControls = true
           browser.isScrollbarFadingEnabled = false*/
         browser.loadUrl(url)

@@ -4,10 +4,10 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.huda.eftarramdanvideos.ElearningFragment.LinkModel
-import com.huda.eftarramdanvideos.Models.QuestionModel
 import com.huda.eftarramdanvideos.R
 
 
@@ -36,7 +36,7 @@ class ElarningQuestionsLinks(modelFeedArrayList: List<LinkModel>) :
         val questionModel = questionArrayList[position]
         holder.Questiontitle.text = questionModel.linkName
 
-        holder.itemView.setOnClickListener {
+        holder.redirect.setOnClickListener {
             if (onItemClickListener != null && position != RecyclerView.NO_POSITION) {
                 onItemClickListener.onItemClicked(position)
             }
@@ -47,6 +47,7 @@ class ElarningQuestionsLinks(modelFeedArrayList: List<LinkModel>) :
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var Questiontitle: TextView = itemView.findViewById(R.id.question_title)
+        var redirect: ImageView = itemView.findViewById(R.id.redirect)
 
 
     }

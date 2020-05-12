@@ -2,59 +2,50 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginBottom="15dp"
     android:layout_marginLeft="@dimen/space_10"
     android:layout_marginEnd="@dimen/space_10"
     android:background="@drawable/editbox_border"
     android:layout_marginRight="@dimen/space_10">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:minHeight="20dp"
-        android:orientation="vertical"
-        android:visibility="visible">
+        android:visibility="visible"
+        android:padding="@dimen/space_5"
+
+        >
 
         <TextView
             android:id="@+id/question_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginLeft="@dimen/space_10"
-            android:layout_marginRight="@dimen/space_20"
-            android:layout_marginTop="@dimen/space_10"
-            android:layout_marginBottom="@dimen/space_10"
-            android:text="Question Someting ??"
+            android:layout_marginEnd="40dp"
+            tools:text="Questionjjjjjjjjkjjjjjjjjsmjsjdjsdjsdjjsjsjdjsdjsjdsjdjsjjjjjjjjjjjjjjjjiiiiiiiiiiiiiiiiiiiijjjjjjkkkkkk"
             android:textColor="@color/white"
-            android:textSize="17sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/notification_message"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/space_20"
-            android:gravity="center"
-            android:text="Question Someting ??"
-            android:textColor="@color/white"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:textSize="14sp"
             android:textStyle="bold"
-            android:visibility="gone" />
+            android:layout_marginRight="40dp" />
 
-        <TextView
-            android:id="@+id/notification_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="@dimen/space_5"
-            android:layout_marginBottom="@dimen/space_10"
-            android:gravity="center"
-            android:text="Question Someting ??"
-            android:textColor="@color/not_black"
-            android:textSize="12sp"
-            android:textStyle="bold"
-            android:visibility="gone" />
 
-    </LinearLayout>
+        <ImageView
+            android:id="@+id/redirect"
+            android:src="@drawable/redirect"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:clickable="true"
+            app:layout_constraintStart_toEndOf="@+id/question_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:visibility="visible"
+            android:focusable="true" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>

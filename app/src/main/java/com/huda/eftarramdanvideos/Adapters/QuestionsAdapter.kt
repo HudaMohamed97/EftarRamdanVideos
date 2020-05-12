@@ -4,6 +4,7 @@ import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.huda.eftarramdanvideos.Models.QuestionModel
@@ -35,7 +36,7 @@ class QuestionsAdapter(modelFeedArrayList: List<QuestionModel>) :
         val questionModel = questionArrayList[position]
         holder.Questiontitle.text = questionModel.title
 
-        holder.itemView.setOnClickListener {
+        holder.redirect.setOnClickListener {
             if (onItemClickListener != null && position != RecyclerView.NO_POSITION) {
                 onItemClickListener.onItemClicked(position)
             }
@@ -46,6 +47,7 @@ class QuestionsAdapter(modelFeedArrayList: List<QuestionModel>) :
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var Questiontitle: TextView = itemView.findViewById(R.id.question_title)
+        var redirect: ImageView = itemView.findViewById(R.id.redirect)
 
 
     }

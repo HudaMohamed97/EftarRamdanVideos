@@ -70,7 +70,7 @@
             android:padding="@dimen/space_5"
             android:background="@color/white"
             android:textColor="@color/black"
-            android:textSize="@dimen/space_20"
+            android:textSize="@dimen/space_15"
             android:textStyle="bold"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
@@ -91,7 +91,7 @@
             <LinearLayout
                 android:id="@+id/linksView"
                 android:layout_width="match_parent"
-                android:layout_height="400dp"
+                android:layout_height="wrap_content"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -137,7 +137,7 @@
                     android:padding="@dimen/space_5"
                     android:background="@color/white"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/space_20"
+                    android:textSize="@dimen/space_15"
                     android:textStyle="bold">
 
                 </TextView>

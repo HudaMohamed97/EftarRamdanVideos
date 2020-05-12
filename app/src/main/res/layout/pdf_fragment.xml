@@ -1,8 +1,14 @@
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/mainLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/black">
+
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/black"
     android:orientation="vertical">
 
@@ -58,20 +64,29 @@
 
 
 
-    <com.github.barteksc.pdfviewer.PDFView
-        android:layout_height="match_parent"
+    <TextView
         android:layout_width="match_parent"
-        android:id="@+id/pdf_viewer"
-        android:layout_marginTop="@dimen/space_60"
-        android:background="@color/dark_color2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/header">
+        android:layout_height="wrap_content"
+        android:text="kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk
 
-    </com.github.barteksc.pdfviewer.PDFView>
+
+
+
+        k"
+        android:id="@+id/textPdf"
+        android:layout_marginStart="@dimen/space_10"
+        android:layout_marginEnd="@dimen/space_10"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+
+        android:layout_marginLeft="@dimen/space_10"></TextView>
+
 
 
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
