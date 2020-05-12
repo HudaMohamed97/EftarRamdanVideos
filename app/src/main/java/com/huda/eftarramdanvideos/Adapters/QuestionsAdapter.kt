@@ -41,6 +41,11 @@ class QuestionsAdapter(modelFeedArrayList: List<QuestionModel>) :
                 onItemClickListener.onItemClicked(position)
             }
         }
+        holder.itemView.setOnClickListener {
+            if (onItemClickListener != null && position != RecyclerView.NO_POSITION) {
+                onItemClickListener.onItemClicked(position)
+            }
+        }
 
 
     }

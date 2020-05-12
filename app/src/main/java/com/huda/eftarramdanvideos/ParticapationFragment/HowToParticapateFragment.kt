@@ -58,11 +58,11 @@ class HowToParticapateFragment : Fragment() {
                         "\t. Registration = 50 pts <br>\n" +
                         "\t. Completing a video = 100 Pts – Answering the question after each video = \n" +
                         "\t20 Pts <br>\n" +
-                        "\t. Completing an E-learning session = 100 Pts – Answering the question after \n" +
-                        "\teach session = 20 Pts <br>\n" +
+                        "\t. Completing an E-learning session = 100 Pts – Answering the question after " +
+                        "\t  each session = 20 Pts <br>\n" +
                         "\t. The 1st place will win an X1 carbon laptop <br>\n" +
                         "\t. Each participant will eventually receive an E-voucher depending on his \n" +
-                        "\tscore …. So shape up and get Ready, Set, SCORE! </li>\n" +
+                        "\t  score …. So shape up and get Ready, Set, SCORE! </li>\n" +
                         "\t<br>\n" +
                         "\t<p> 7- At the end of the program, a detailed report on each user’s \n" +
                         "\tscore and activities during the entire time will be announced to determine \n" +

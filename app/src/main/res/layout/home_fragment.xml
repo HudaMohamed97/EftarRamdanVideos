@@ -8,9 +8,9 @@
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/header"
         android:layout_width="match_parent"
         android:layout_height="@dimen/space_60"
-        android:layout_marginBottom="30dp"
         android:background="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,6 +60,13 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="70dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/header"
+        android:src="@mipmap/logo"
+        />
 
     <GridLayout
         android:id="@+id/mainGrid"
@@ -68,7 +75,7 @@
         android:layout_gravity="center"
         android:useDefaultMargins="true"
         android:layout_marginStart="@dimen/space_20"
-        android:layout_marginTop="100dp"
+        android:layout_marginTop="130dp"
         android:layout_marginEnd="@dimen/space_20"
         android:layout_marginBottom="100dp"
         android:backgroundTint="@color/dark_color2"
