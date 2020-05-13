@@ -61,6 +61,7 @@ class RegisterFragment : Fragment() {
         FromFragment = arguments?.getString("fromFragment").toString()
         email = root.findViewById(R.id.input_CorporateEmail)
         passwordEt = root.findViewById(R.id.input_password)
+        rePasswordEt = root.findViewById(R.id.input_confirm_password)
         name = root.findViewById(R.id.input_name)
         company = root.findViewById(R.id.input_Company)
         inputTitle = root.findViewById(R.id.input_Title)
@@ -80,7 +81,7 @@ class RegisterFragment : Fragment() {
                     , passwordText
                 ) && (nameText.isNotEmpty() && companyText.isNotEmpty() && countryText.isNotEmpty() &&
                         phoneText.isNotEmpty() && titleText.isNotEmpty() && passwordEt.length() >= 6 &&
-                        inputNumber.length() >= 9)
+                        inputNumber.length() >= 9 && matched)
             ) {
                 callRegisterRequest()
             }
@@ -121,6 +122,7 @@ class RegisterFragment : Fragment() {
 
     private fun checkErrorEnabled() {
         getUserInputData()
+        isPasswordMatched()
         validate()
     }
 
@@ -139,28 +141,35 @@ class RegisterFragment : Fragment() {
                 Toast.LENGTH_SHORT
             ).show()
         } else if (!Validation.validate(passwordText)) {
-            Toast.makeText(activity, "empty password please fill it", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "empty password please fill it", Toast.LENGTH_LONG).show()
 
         } else if (phoneText.isEmpty()) {
-            Toast.makeText(activity, "empty phone please fill it", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "empty phone please fill it", Toast.LENGTH_LONG).show()
 
         } else if (countryText.isEmpty()) {
-            Toast.makeText(activity, "empty country please fill it", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "empty city please fill it", Toast.LENGTH_LONG).show()
 
         } else if (companyText.isEmpty()) {
-            Toast.makeText(activity, "empty company please fill it", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "empty company please fill it", Toast.LENGTH_LONG).show()
 
         } else if (companyText.isEmpty()) {
-            Toast.makeText(activity, "empty title please fill it", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "empty title please fill it", Toast.LENGTH_LONG).show()
 
         } else if (nameText.isEmpty()) {
-            Toast.makeText(activity, "empty name please fill it", Toast.LENGTH_SHORT).show()
+            Toast.makeText(activity, "empty name please fill it", Toast.LENGTH_LONG).show()
 
         } else if (passwordEt.length() < 6) {
             Toast.makeText(activity, "password must be at least 6 characters", Toast.LENGTH_LONG)
                 .show()
         } else if (inputNumber.length() < 9) {
             Toast.makeText(activity, "phone must be at least 9 characters", Toast.LENGTH_LONG)
+                .show()
+        } else if (!matched) {
+            Toast.makeText(
+                activity,
+                "password and confirmed Password not matched",
+                Toast.LENGTH_LONG
+            )
                 .show()
         }
     }
@@ -173,6 +182,7 @@ class RegisterFragment : Fragment() {
         companyText = company.text.toString()
         titleText = inputTitle.text.toString()
         countryText = input_country.text.toString()
+        rePasswordText = rePasswordEt.text.toString()
 
     }
 
