@@ -2,7 +2,6 @@ package com.huda.eftarramdanvideos.EventDateFragment
 
 import androidx.lifecycle.MutableLiveData
 import com.huda.eftarramdanvideos.Models.AgendaModel
-import com.huda.eftarramdanvideos.Models.QuestionData
 import com.huda.eftarramdanvideos.NetworkLayer.Webservice
 import retrofit2.Call
 import retrofit2.Callback
