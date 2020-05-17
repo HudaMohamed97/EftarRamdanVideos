@@ -300,14 +300,14 @@
 
         <ImageView
             android:id="@+id/event_card"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:adjustViewBounds="false"
             android:scaleType="fitXY"
             android:clickable="true"
             android:focusable="true"
-            android:src="@drawable/event_data"
+            android:src="@drawable/eventpage"
             android:visibility="visible"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
