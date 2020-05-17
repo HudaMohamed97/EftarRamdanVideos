@@ -22,16 +22,21 @@ import kotlinx.android.synthetic.main.event_fragment.*
 import java.util.concurrent.TimeUnit
 import android.content.Intent
 import android.net.Uri
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import com.huda.eftarramdanvideos.Adapters.AgendaAdapter
+import com.huda.eftarramdanvideos.Models.Agenda
 
 
 class EventDataFragment : Fragment() {
     private lateinit var root: View
     private lateinit var elarningViewModel: EventViewModel
     private lateinit var loginPreferences: SharedPreferences
-    private val list = arrayListOf<String>()
+    private val list = arrayListOf<Agenda>()
     private lateinit var recyclerView: RecyclerView
     private lateinit var agendaAdapter: AgendaAdapter
+    private lateinit var uri: String
+    private var timeRemaining: Int = 0
 
 
     override fun onCreateView(
@@ -48,9 +53,8 @@ class EventDataFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setListeners()
-        setCounter()
         initRecyclerView()
-        // callElearningQuestions()
+        callAgenda()
     }
 
     private fun setListeners() {
@@ -64,7 +68,7 @@ class EventDataFragment : Fragment() {
         }
 
         event_button.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://www.stackoverflow.com"))
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(uri))
             startActivity(intent)
         }
 
@@ -73,14 +77,6 @@ class EventDataFragment : Fragment() {
 
     private fun initRecyclerView() {
         val layoutManager = LinearLayoutManager(activity, LinearLayoutManager.VERTICAL, false)
-        list.add("welcom hsjhjsfds")
-        list.add("welcom hsjhjsfds")
-        list.add("welcom hsjhjsfds")
-        list.add("welcom hsjhjsfds")
-        list.add("welcom hsjhjsfds")
-        list.add("welcom hsjhjsfds")
-        list.add("welcom hsjhjsfds")
-        list.add("welcom hsjhjsfds")
         agendaAdapter = AgendaAdapter(list)
         recyclerView.layoutManager = layoutManager
         recyclerView.adapter = agendaAdapter
@@ -96,7 +92,7 @@ class EventDataFragment : Fragment() {
     private fun setCounter() {
         event_button.isEnabled = false
         event_button.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
-        val duration = 30000 //4   //3 600 000 millisecond per hour
+        val duration = timeRemaining //4   //3 600 000 millisecond per hour
         object : CountDownTimer(duration.toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
                 var millisUntilFinished = millisUntilFinished
@@ -147,18 +143,26 @@ class EventDataFragment : Fragment() {
     }
 
 
-/*
-    private fun callElearningQuestions() {
-        questionProgressBar.visibility = View.VISIBLE
+    private fun callAgenda() {
+        agendaProgressBar.visibility = View.VISIBLE
         val accessToken = loginPreferences.getString("accessToken", "")
         if (accessToken != null) {
-            elarningViewModel.getElarningQuestion(accessToken)
+            elarningViewModel.getAgenda()
         }
         elarningViewModel.getData().observe(this, Observer {
-            questionProgressBar.visibility = View.GONE
+            agendaProgressBar.visibility = View.GONE
+            countDownLayout.visibility = View.VISIBLE
             if (it != null) {
                 list.clear()
-                for (data in it.data) {
+                uri = it.setting.extra_link
+                timeRemaining = it.setting.remaining_time
+                setCounter()
+                val str = it.setting.date_time
+                val splited = str.split(" ")
+                textEventDate.text = "EventDate: " + splited[0]
+                textEventTime.text = "EventTime: " + splited[1]
+                textEventSpeakers.text = "EventSpeaker: " + it.setting.speaker
+                for (data in it.agenda) {
                     list.add(data)
                 }
                 agendaAdapter.notifyDataSetChanged()
@@ -168,7 +172,6 @@ class EventDataFragment : Fragment() {
             }
         })
     }
-*/
 
 
 }

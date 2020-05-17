@@ -6,10 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.huda.eftarramdanvideos.Models.Agenda
 import com.huda.eftarramdanvideos.R
 
 
-class AgendaAdapter(modelFeedArrayList: List<String>) :
+class AgendaAdapter(modelFeedArrayList: List<Agenda>) :
     RecyclerView.Adapter<AgendaAdapter.MyViewHolder>() {
 
     lateinit var onItemClickListener: OnItemClickListener
@@ -32,7 +33,8 @@ class AgendaAdapter(modelFeedArrayList: List<String>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val questionModel = questionArrayList[position]
-        holder.Questiontitle.text = questionModel
+        holder.agendatitle.text = questionModel.name
+        holder.event_time.text = questionModel.time_from + " - " + questionModel.time_to
         holder.itemView.setOnClickListener {
             if (onItemClickListener != null && position != RecyclerView.NO_POSITION) {
                 onItemClickListener.onItemClicked(position)
@@ -43,7 +45,8 @@ class AgendaAdapter(modelFeedArrayList: List<String>) :
     }
 
     class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var Questiontitle: TextView = itemView.findViewById(R.id.question_title)
+        var agendatitle: TextView = itemView.findViewById(R.id.question_title)
+        var event_time: TextView = itemView.findViewById(R.id.event_time)
 
 
     }

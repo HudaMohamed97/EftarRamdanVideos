@@ -15,6 +15,9 @@ interface ApiServices {
     @POST("auth/register")
     fun register(@Body registerRequestModel: RegisterRequestModel): Call<ResponseModelData>
 
+    @GET("setting")
+    fun getSettings(): Call<AgendaModel>
+
 
     @POST("auth/reset-password")
     fun reset(@Body body: Map<String, String>): Call<SubmitModel>
