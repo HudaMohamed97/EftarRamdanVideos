@@ -51,6 +51,7 @@ class HomeFragment : Fragment() {
         score_card.visibility = View.VISIBLE
         elearning_Card.visibility = View.VISIBLE
         webinarCard.visibility = View.VISIBLE
+        event_card.visibility = View.VISIBLE
 
 
     }
@@ -61,6 +62,7 @@ class HomeFragment : Fragment() {
         elearning_Card.visibility = View.GONE
         webinarCard.visibility = View.GONE
         score_card.visibility = View.GONE
+        event_card.visibility = View.GONE
 
     }
 
@@ -92,6 +94,9 @@ class HomeFragment : Fragment() {
         }
         score_card.setOnClickListener {
             callScoreData()
+        }
+        event_card.setOnClickListener {
+            findNavController().navigate(R.id.action_home_EventFragment)
         }
     }
 

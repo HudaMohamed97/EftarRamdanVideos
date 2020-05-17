@@ -45,6 +45,9 @@
         <action
             android:id="@+id/action_home_ElearningFragment"
             app:destination="@id/ElearningFragment" />
+        <action
+            android:id="@+id/action_home_EventFragment"
+            app:destination="@id/EventDataFragment" />
 
     </fragment>
     <fragment
@@ -84,6 +87,13 @@
         android:id="@+id/ResetPasswrdFragment"
         android:name="com.huda.eftarramdanvideos.ResetPasswordFragment.ResetPasswrdFragment"
         tools:layout="@layout/reset_fragment">
+
+
+    </fragment>
+    <fragment
+        android:id="@+id/EventDataFragment"
+        android:name="com.huda.eftarramdanvideos.EventDateFragment.EventDataFragment"
+        tools:layout="@layout/event_fragment">
 
 
     </fragment>

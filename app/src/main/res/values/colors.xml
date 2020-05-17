@@ -25,6 +25,7 @@
     <color name="not_white">#dcffffff</color>
     <color name="semi_black">#b90b0606</color>
     <color name="not_black">#272727</color>
+    <color name="gray">#808080</color>
     <color name="yellow">#fdb812</color>
     <color name="myAccount_background">#8DFC88</color>
     <color name="concor_background">#FFC06A</color>
