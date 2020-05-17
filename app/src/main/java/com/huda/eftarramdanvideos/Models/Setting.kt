@@ -18,6 +18,8 @@ data class Setting (
 
 	@SerializedName("date_time") val date_time : String,
 	@SerializedName("speaker") val speaker : String,
+	@SerializedName("date") val date : String,
+	@SerializedName("time") val time : String,
 	@SerializedName("extra_link") val extra_link : String,
-	@SerializedName("remaining_time") val remaining_time : Int
+	@SerializedName("remaining_time") val remaining_time : Long
 )

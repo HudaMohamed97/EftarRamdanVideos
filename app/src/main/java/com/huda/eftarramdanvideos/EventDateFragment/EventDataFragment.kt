@@ -36,7 +36,7 @@ class EventDataFragment : Fragment() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var agendaAdapter: AgendaAdapter
     private lateinit var uri: String
-    private var timeRemaining: Int = 0
+    private var timeRemaining: Long = 0
 
 
     override fun onCreateView(
@@ -157,10 +157,8 @@ class EventDataFragment : Fragment() {
                 uri = it.setting.extra_link
                 timeRemaining = it.setting.remaining_time
                 setCounter()
-                val str = it.setting.date_time
-                val splited = str.split(" ")
-                textEventDate.text = "EventDate: " + splited[0]
-                textEventTime.text = "EventTime: " + splited[1]
+                textEventDate.text = "EventDate: " + it.setting.date
+                textEventTime.text = "EventTime: " + it.setting.time
                 textEventSpeakers.text = "EventSpeaker: " + it.setting.speaker
                 for (data in it.agenda) {
                     list.add(data)
