@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -152,10 +153,11 @@ class RegisterFragment : Fragment() {
         } else if (companyText.isEmpty()) {
             Toast.makeText(activity, "empty company please fill it", Toast.LENGTH_LONG).show()
 
-        } else if (companyText.isEmpty()) {
+        } else if (titleText.isEmpty()) {
             Toast.makeText(activity, "empty title please fill it", Toast.LENGTH_LONG).show()
 
         } else if (nameText.isEmpty()) {
+           // showAlertDialog("empty name please fill it")
             Toast.makeText(activity, "empty name please fill it", Toast.LENGTH_LONG).show()
 
         } else if (passwordEt.length() < 6) {
@@ -193,6 +195,13 @@ class RegisterFragment : Fragment() {
                 context!!.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager?
             imm!!.hideSoftInputFromWindow(view.windowToken, 0)
         }
+    }
+
+    private fun showAlertDialog(text: String) {
+        val alertDialog = AlertDialog.Builder(activity!!,R.style.DialogTheme).create()
+        alertDialog.setMessage(text)
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK") { dialog, _ -> dialog.dismiss() }
+        alertDialog.show()
     }
 
 }

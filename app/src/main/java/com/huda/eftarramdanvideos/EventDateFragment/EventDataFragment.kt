@@ -26,6 +26,9 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.huda.eftarramdanvideos.Adapters.AgendaAdapter
 import com.huda.eftarramdanvideos.Models.Agenda
+import android.annotation.SuppressLint
+import android.icu.text.SimpleDateFormat
+import java.util.*
 
 
 class EventDataFragment : Fragment() {
@@ -54,6 +57,7 @@ class EventDataFragment : Fragment() {
         activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setListeners()
         initRecyclerView()
+       // getRemainngtime()
         callAgenda()
     }
 
@@ -92,10 +96,10 @@ class EventDataFragment : Fragment() {
     private fun setCounter() {
         event_button.isEnabled = false
         event_button.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
-       val duration = timeRemaining //4   //3 600 000 millisecond per hour
+        val duration = timeRemaining //4   //3 600 000 millisecond per hour
         object : CountDownTimer(duration.toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
-                Log.i("hhhh","tick"+millisUntilFinished)
+                Log.i("hhhh", "tick" + millisUntilFinished)
                 var millisUntilFinished = millisUntilFinished
                 val days = TimeUnit.HOURS.toDays(TimeUnit.MILLISECONDS.toHours(millisUntilFinished))
                 val hours = (TimeUnit.MILLISECONDS.toHours(millisUntilFinished) -
@@ -172,5 +176,20 @@ class EventDataFragment : Fragment() {
         })
     }
 
+    @SuppressLint("NewApi")
+    fun getRemainngtime() {
+        val formatter = SimpleDateFormat("yyyy-MM-dd HH:mm")
+        formatter.isLenient = false
+
+        val curDate = Date()
+        val curMillis = curDate.time
+        val curTime = formatter.format(curDate)
+
+        val oldTime = "2020-05-18 10:00"
+        val oldDate = formatter.parse(oldTime)
+        val oldMillis = oldDate.time
+
+        Log.i("hhhhhhhh", "old" + oldMillis + "cur" + curMillis)
+    }
 
 }
