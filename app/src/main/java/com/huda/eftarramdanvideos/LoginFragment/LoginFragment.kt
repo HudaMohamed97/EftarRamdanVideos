@@ -14,6 +14,7 @@ import android.view.inputmethod.InputMethodManager
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
@@ -99,7 +100,7 @@ class LoginFragment : Fragment(), LoginInterface {
             if (loginViewModel.validateLoginInfo(
                     email.text.toString(),
                     passwordEt.text.toString()
-                )
+                ) && passwordEt.text.length >= 6
             ) {
                 callLoginRequest()
             }
@@ -125,10 +126,12 @@ class LoginFragment : Fragment(), LoginInterface {
                 } else {
                     var error = it.token_type.replace("[", "")
                     error = error.replace("]", "")
-                    Toast.makeText(activity, error, Toast.LENGTH_SHORT).show()
+                    showAlertDialog(error)
+                    // Toast.makeText(activity, error, Toast.LENGTH_SHORT).show()
                 }
             } else {
-                Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT).show()
+                showAlertDialog("Network Error")
+                //  Toast.makeText(activity, "Network Error", Toast.LENGTH_SHORT).show()
             }
 
 
@@ -138,17 +141,23 @@ class LoginFragment : Fragment(), LoginInterface {
 
     private fun checkErrorEnabled() {
         if (!Validation.validate(email.text.toString())) {
-            Toast.makeText(activity, "empty Email please fill it", Toast.LENGTH_SHORT).show()
+            showAlertDialog("empty Email please fill it")
+            // Toast.makeText(activity, "empty Email please fill it", Toast.LENGTH_SHORT).show()
         } else if (!Validation.validateEmail(email.text.toString())) {
-            Toast.makeText(
-                activity,
-                "Invalid Email Format Please enter valid mail",
-                Toast.LENGTH_SHORT
-            ).show()
+            showAlertDialog("Invalid Email Format Please enter valid mail")
+            /* Toast.makeText(
+                 activity,
+                 "Invalid Email Format Please enter valid mail",
+                 Toast.LENGTH_SHORT
+             ).show()*/
 
         } else {
             if (!Validation.validate(passwordEt.text.toString())) {
-                Toast.makeText(activity, "empty password please fill it", Toast.LENGTH_SHORT).show()
+                showAlertDialog("empty password please fill it")
+                // Toast.makeText(activity, "empty password please fill it", Toast.LENGTH_SHORT).show()
+            } else if (passwordEt.text.length < 6) {
+                showAlertDialog("password must be at least 6 characters")
+
             }
         }
     }
@@ -179,5 +188,12 @@ class LoginFragment : Fragment(), LoginInterface {
         val token = "Bearer " + responseModelData.access_token
         loginPrefsEditor.putString("accessToken", token)
         loginPrefsEditor.commit()
+    }
+
+    private fun showAlertDialog(text: String) {
+        val alertDialog = AlertDialog.Builder(activity!!, R.style.DialogTheme).create()
+        alertDialog.setMessage(text)
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK") { dialog, _ -> dialog.dismiss() }
+        alertDialog.show()
     }
 }

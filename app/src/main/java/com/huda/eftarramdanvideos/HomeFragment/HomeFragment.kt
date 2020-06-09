@@ -43,15 +43,16 @@ class HomeFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
-        showViews()
+        //showViews()
     }
 
     private fun showViews() {
+        header.visibility = View.VISIBLE
         howToCard.visibility = View.VISIBLE
         score_card.visibility = View.VISIBLE
         elearning_Card.visibility = View.VISIBLE
-        webinarCard.visibility = View.VISIBLE
         event_card.visibility = View.VISIBLE
+        logo.visibility = View.VISIBLE
 
 
     }
@@ -60,9 +61,10 @@ class HomeFragment : Fragment() {
     private fun hideViews() {
         howToCard.visibility = View.GONE
         elearning_Card.visibility = View.GONE
-        webinarCard.visibility = View.GONE
         score_card.visibility = View.GONE
         event_card.visibility = View.GONE
+        header.visibility = View.GONE
+        logo.visibility = View.GONE
 
     }
 
@@ -77,13 +79,6 @@ class HomeFragment : Fragment() {
             activity!!.finish()
         }
 
-
-
-        webinarCard.setOnClickListener {
-            hideViews()
-            findNavController().navigate(R.id.action_Register_to_videos)
-
-        }
         howToCard.setOnClickListener {
             findNavController().navigate(R.id.action_home_howtoFragment)
 
@@ -103,6 +98,7 @@ class HomeFragment : Fragment() {
 
     private fun callScoreData() {
         scoreProgressBar.visibility = View.VISIBLE
+        score.visibility = View.GONE
         val accessToken = loginPreferences.getString("accessToken", "")
         if (accessToken != null) {
             registerViewModel.getScore(accessToken)

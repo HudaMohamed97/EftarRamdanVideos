@@ -18,7 +18,6 @@ import com.huda.eftarramdanvideos.Adapters.ElarningQuestionsAdapter
 import com.huda.eftarramdanvideos.Adapters.ElarningQuestionsLinks
 import com.huda.eftarramdanvideos.Models.QuestionModel
 import com.huda.eftarramdanvideos.R
-import kotlinx.android.synthetic.main.activity_video.questionProgressBar
 import kotlinx.android.synthetic.main.activity_video.questionsRecycler
 import kotlinx.android.synthetic.main.elarning_frament.*
 
@@ -50,6 +49,13 @@ class ElearningFragment : Fragment() {
         activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setListeners()
         initRecyclerView()
+        elarningViewModel.getIsLoading().observe(this, Observer {
+            if (it) {
+                showProgress()
+            } else {
+                hideProgress()
+            }
+        })
         callElearningQuestions()
     }
 
@@ -129,14 +135,22 @@ class ElearningFragment : Fragment() {
         )
     }
 
+    private fun showProgress() {
+        eQuestionProgressBar.visibility = View.VISIBLE
+
+    }
+
+    private fun hideProgress() {
+        eQuestionProgressBar.visibility = View.GONE
+
+    }
+
     private fun callElearningQuestions() {
-        questionProgressBar.visibility = View.VISIBLE
         val accessToken = loginPreferences.getString("accessToken", "")
         if (accessToken != null) {
             elarningViewModel.getElarningQuestion(accessToken)
         }
         elarningViewModel.getData().observe(this, Observer {
-            questionProgressBar.visibility = View.GONE
             if (it != null) {
                 list.clear()
                 for (data in it.data) {

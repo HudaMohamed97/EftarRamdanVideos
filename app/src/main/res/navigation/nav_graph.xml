@@ -32,6 +32,28 @@
             app:destination="@id/VideosActivity" />
     </fragment>
     <fragment
+        android:id="@+id/EnteryFragmentFragment"
+        android:name="com.huda.eftarramdanvideos.EnteryFragment"
+        tools:layout="@layout/elarning_videos_frament">
+
+        <action
+            android:id="@+id/action_entery_to_Videos_ListFragment"
+            app:destination="@id/VideosListFragment" />
+        <action
+            android:id="@+id/action_entery_to_elearning"
+            app:destination="@id/ElearningFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/VideosListFragment"
+        android:name="com.huda.eftarramdanvideos.VideosListFragment"
+        tools:layout="@layout/videos_list_frament">
+
+        <action
+            android:id="@+id/action_entery_to_videos"
+            app:destination="@id/VideosActivity" />
+
+    </fragment>
+    <fragment
         android:id="@+id/HomeFragment"
         android:name="com.huda.eftarramdanvideos.HomeFragment.HomeFragment"
         tools:layout="@layout/home_fragment">
@@ -44,7 +66,7 @@
             app:destination="@id/HowToFragment" />
         <action
             android:id="@+id/action_home_ElearningFragment"
-            app:destination="@id/ElearningFragment" />
+            app:destination="@id/EnteryFragmentFragment" />
         <action
             android:id="@+id/action_home_EventFragment"
             app:destination="@id/EventDataFragment" />

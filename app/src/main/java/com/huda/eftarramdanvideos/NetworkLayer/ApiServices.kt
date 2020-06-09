@@ -26,6 +26,9 @@ interface ApiServices {
     @GET("videos/single-video")
     fun getVideos(@Header("Authorization") authHeader: String): Call<VideoResponse>
 
+    @GET("videos")
+    fun getAllVideos(@Header("Authorization") authHeader: String): Call<AllVideoResponse>
+
     /*@GET("questions")
     fun getVideoQuestions(@Header("Authorization") authHeader: String): Call<QuestionData>
 */
@@ -36,7 +39,10 @@ interface ApiServices {
     fun getScore(@Header("Authorization") authHeader: String): Call<MyScore>
 
     @POST("videos/{video}/start")
-    fun startVideos(@Path("video") video: Int, @Header("Authorization") authHeader: String): Call<SubmitModel>
+    fun startVideos(
+        @Path("video") video: Int,
+        @Header("Authorization") authHeader: String
+    ): Call<SubmitModel>
 
     @GET("questions/{question}")
     fun getSingelQuestion(
@@ -52,7 +58,10 @@ interface ApiServices {
     ): Call<SubmitModel>
 
     @POST("videos/{video}/end")
-    fun endVideos(@Path("video") video: Int, @Header("Authorization") authHeader: String): Call<SubmitModel>
+    fun endVideos(
+        @Path("video") video: Int,
+        @Header("Authorization") authHeader: String
+    ): Call<SubmitModel>
 
 
 }

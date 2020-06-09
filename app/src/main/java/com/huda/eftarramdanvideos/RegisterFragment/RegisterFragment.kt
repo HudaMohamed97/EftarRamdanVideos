@@ -134,45 +134,56 @@ class RegisterFragment : Fragment() {
 
     private fun validate() {
         if (!Validation.validate(emailText)) {
-            Toast.makeText(activity, "empty Email please fill it", Toast.LENGTH_SHORT).show()
+            showAlertDialog("empty Email please fill it")
+           // Toast.makeText(activity, "empty Email please fill it", Toast.LENGTH_SHORT).show()
         } else if (!Validation.validateEmail(emailText)) {
-            Toast.makeText(
+            showAlertDialog("Invalid Email Format Please enter valid mail")
+           /* Toast.makeText(
                 activity,
                 "Invalid Email Format Please enter valid mail",
                 Toast.LENGTH_SHORT
-            ).show()
+            ).show()*/
         } else if (!Validation.validate(passwordText)) {
-            Toast.makeText(activity, "empty password please fill it", Toast.LENGTH_LONG).show()
+            showAlertDialog("empty password please fill it")
+           // Toast.makeText(activity, "empty password please fill it", Toast.LENGTH_LONG).show()
 
         } else if (phoneText.isEmpty()) {
-            Toast.makeText(activity, "empty phone please fill it", Toast.LENGTH_LONG).show()
+            showAlertDialog("empty phone please fill it")
+           // Toast.makeText(activity, "empty phone please fill it", Toast.LENGTH_LONG).show()
 
         } else if (countryText.isEmpty()) {
-            Toast.makeText(activity, "empty city please fill it", Toast.LENGTH_LONG).show()
+            showAlertDialog("empty city please fill it")
+           // Toast.makeText(activity, "empty city please fill it", Toast.LENGTH_LONG).show()
 
         } else if (companyText.isEmpty()) {
-            Toast.makeText(activity, "empty company please fill it", Toast.LENGTH_LONG).show()
+            showAlertDialog("empty company please fill it")
+           // Toast.makeText(activity, "empty company please fill it", Toast.LENGTH_LONG).show()
 
         } else if (titleText.isEmpty()) {
-            Toast.makeText(activity, "empty title please fill it", Toast.LENGTH_LONG).show()
+            showAlertDialog("empty title please fill it")
+           // Toast.makeText(activity, "empty title please fill it", Toast.LENGTH_LONG).show()
 
         } else if (nameText.isEmpty()) {
+            showAlertDialog("empty name please fill it")
            // showAlertDialog("empty name please fill it")
-            Toast.makeText(activity, "empty name please fill it", Toast.LENGTH_LONG).show()
+            //Toast.makeText(activity, "empty name please fill it", Toast.LENGTH_LONG).show()
 
         } else if (passwordEt.length() < 6) {
-            Toast.makeText(activity, "password must be at least 6 characters", Toast.LENGTH_LONG)
-                .show()
+            showAlertDialog("password must be at least 6 characters")
+           /* Toast.makeText(activity, "password must be at least 6 characters", Toast.LENGTH_LONG)
+                .show()*/
         } else if (inputNumber.length() < 9) {
-            Toast.makeText(activity, "phone must be at least 9 characters", Toast.LENGTH_LONG)
-                .show()
+            showAlertDialog("phone must be at least 9 characters")
+            /*Toast.makeText(activity, "phone must be at least 9 characters", Toast.LENGTH_LONG)
+                .show()*/
         } else if (!matched) {
-            Toast.makeText(
+            showAlertDialog("password and confirmed Password not matched")
+            /*Toast.makeText(
                 activity,
                 "password and confirmed Password not matched",
                 Toast.LENGTH_LONG
             )
-                .show()
+                .show()*/
         }
     }
 

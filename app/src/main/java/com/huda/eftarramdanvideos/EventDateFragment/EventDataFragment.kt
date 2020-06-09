@@ -57,7 +57,7 @@ class EventDataFragment : Fragment() {
         activity!!.requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_PORTRAIT
         setListeners()
         initRecyclerView()
-       // getRemainngtime()
+        // getRemainngtime()
         callAgenda()
     }
 
@@ -96,6 +96,9 @@ class EventDataFragment : Fragment() {
     private fun setCounter() {
         event_button.isEnabled = false
         event_button.backgroundTintList = ColorStateList.valueOf(Color.GRAY)
+        if (timeRemaining < 0) {
+            timeRemaining = 0
+        }
         val duration = timeRemaining //4   //3 600 000 millisecond per hour
         object : CountDownTimer(duration.toLong(), 1000) {
             override fun onTick(millisUntilFinished: Long) {
