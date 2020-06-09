@@ -56,7 +56,7 @@ class ElearningFragment : Fragment() {
                 hideProgress()
             }
         })
-        callElearningQuestions()
+         //callElearningQuestions()
     }
 
     private fun setListeners() {

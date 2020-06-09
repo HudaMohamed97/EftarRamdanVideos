@@ -36,6 +36,7 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
     private lateinit var loginPreferences: SharedPreferences
     private lateinit var url: String
     private var videoId: Int = -1
+    private var video_Id: Int = -1
 
 
     private val myPlaybackEventListener = object : YouTubePlayer.PlaybackEventListener {
@@ -92,12 +93,14 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
         setContentView(R.layout.activity_video)
         setClickListener()
         initRecyclerView()
+        val bundle = intent.extras
+        video_Id = bundle?.getInt("VideoId")!!
         val accessToken = loginPreferences.getString("accessToken", "")
         /*if (accessToken != null) {
             getQuestions(accessToken)
         }*/
         if (accessToken != null) {
-            getVideos(accessToken)
+            getVideos(video_Id, accessToken)
         }
 
     }
@@ -179,8 +182,8 @@ class VideosActivity : YouTubeBaseActivity(), YouTubePlayer.OnInitializedListene
     }
 
 
-    fun getVideos(accessToken: String) {
-        Webservice.getInstance().api.getVideos(accessToken)
+    fun getVideos(video_Id: Int, accessToken: String) {
+        Webservice.getInstance().api.getVideos(video_Id, accessToken)
             .enqueue(object : Callback<VideoResponse> {
                 override fun onResponse(
                     call: Call<VideoResponse>, response: Response<VideoResponse>

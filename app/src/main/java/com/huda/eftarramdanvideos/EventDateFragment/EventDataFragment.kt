@@ -132,7 +132,7 @@ class EventDataFragment : Fragment() {
 
             override fun onFinish() {
                 event_button.isEnabled = true
-                event_button.backgroundTintList = ColorStateList.valueOf(Color.rgb(255, 128, 0))
+                event_button.backgroundTintList = ColorStateList.valueOf(Color.rgb(251, 0, 0))
 
                 if (day != null) {
                     day.text = "0"

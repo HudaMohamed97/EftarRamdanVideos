@@ -93,10 +93,10 @@ class VideosListFragment : Fragment() {
         videosAdapter.setOnItemListener(object : VideosListAdapter.OnItemClickListener {
             override fun onItemClicked(position: Int) {
                 val bundle = Bundle()
-                bundle.putInt("questionId", list[position].id)
+                bundle.putInt("VideoId", list[position].id)
                 hideViews()
                 //  findNavController().navigate(R.id.action_Elearning_to_Answer, bundle)
-                findNavController().navigate(R.id.action_entery_to_videos)
+                findNavController().navigate(R.id.action_entery_to_videos, bundle)
 
             }
         })

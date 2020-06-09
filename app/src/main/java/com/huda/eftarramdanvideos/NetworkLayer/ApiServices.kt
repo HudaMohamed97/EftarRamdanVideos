@@ -23,8 +23,8 @@ interface ApiServices {
     fun reset(@Body body: Map<String, String>): Call<SubmitModel>
 
 
-    @GET("videos/single-video")
-    fun getVideos(@Header("Authorization") authHeader: String): Call<VideoResponse>
+    @GET("videos/{video}")
+    fun getVideos(@Path("video") video: Int,@Header("Authorization") authHeader: String): Call<VideoResponse>
 
     @GET("videos")
     fun getAllVideos(@Header("Authorization") authHeader: String): Call<AllVideoResponse>

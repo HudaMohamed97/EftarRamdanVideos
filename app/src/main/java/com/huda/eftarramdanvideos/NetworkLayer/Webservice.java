@@ -13,7 +13,8 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Webservice {
-    private static final String MAIN_URL = "http://ramadan-iftar.cat-sw.com/api/";
+
+    private static final String MAIN_URL = "https://think-smarter.lenovomeaevents.com/api/";
     private static Webservice instance;
     private ApiServices api;
 

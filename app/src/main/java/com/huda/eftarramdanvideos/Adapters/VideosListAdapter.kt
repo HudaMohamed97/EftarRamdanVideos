@@ -35,8 +35,13 @@ class VideosListAdapter(modelFeedArrayList: List<VideoData>) :
 
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val questionModel = questionArrayList[position]
-        holder.video_title.text = "Video Title"
-        holder.video_date.text = "Videos Date"
+        if (questionArrayList[position].title != null) {
+            holder.video_title.text = questionArrayList[position].title
+        }
+        if (questionArrayList[position].date != null) {
+            holder.video_date.text = questionArrayList[position].date
+
+        }
 
         holder.redirect.setOnClickListener {
             if (onItemClickListener != null && position != RecyclerView.NO_POSITION) {

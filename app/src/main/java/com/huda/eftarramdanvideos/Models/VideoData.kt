@@ -18,5 +18,7 @@ data class VideoData(
     @SerializedName("id") val id: Int,
     @SerializedName("url") val url: String,
     @SerializedName("init_points") val init_points: Int,
+    @SerializedName("title") val title: String,
+    @SerializedName("date") val date: String,
     @SerializedName("total_points") val total_points: Int
 )
