@@ -45,7 +45,7 @@
             <View
                 android:layout_width="150dp"
                 android:layout_height="@dimen/space_3"
-                android:background="@color/orange"
+                android:background="@color/red"
                 app:layout_constraintStart_toStartOf="parent"
                 android:layout_marginTop="5dp"
                 app:layout_constraintBottom_toBottomOf="parent"

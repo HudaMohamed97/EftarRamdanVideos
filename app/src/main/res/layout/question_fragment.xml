@@ -46,7 +46,7 @@
         <View
             android:layout_width="150dp"
             android:layout_height="@dimen/space_3"
-            android:background="@color/orange"
+            android:background="@color/red"
             app:layout_constraintStart_toStartOf="parent"
             android:layout_marginTop="10dp"
 
@@ -116,7 +116,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="8dp"
-        android:backgroundTint="@color/orange"
+        android:backgroundTint="@color/red"
         android:text="Submit Your Answer"
         android:textColor="@color/white"
         android:textSize="12sp"

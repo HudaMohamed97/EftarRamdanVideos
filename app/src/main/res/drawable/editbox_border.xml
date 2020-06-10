@@ -3,5 +3,5 @@
     android:id="@+id/edittext_bg">
     <stroke
         android:width="2dp"
-        android:color="@color/orange" />
+        android:color="@color/red" />
 </shape>
